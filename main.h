@@ -4,10 +4,11 @@
 /*
  *This is simple shell for kachi header file
  */
+#include <sys/types.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <stdbool.h>
 /*
   *This is simple shell for kachi header file

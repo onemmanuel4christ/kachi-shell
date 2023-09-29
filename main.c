@@ -1,22 +1,14 @@
-#include "kachi-shell.h"
+#include "main.h"
 /*
  *shell basic
  */
 
 int main(void) {
     char command[120];
-
     while (true) {
         display_prompt();
         read_command(command, sizeof(command));
-        execute_description(command);
+        execute_command(command);
     }
-
-
-
-
-
-    
-
     return 0;
 }

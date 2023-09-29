@@ -1,4 +1,4 @@
-#include "kachi-shell.h"
+#include "main.h"
 
 void display_prompt(void) {
     kachi_print("Kachi_shell$$$$$: ");
