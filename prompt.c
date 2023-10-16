@@ -1,5 +1,5 @@
-#include "main.h"
+#include "kachi-shell.h"
 
 void display_prompt(void) {
-    kachi_print("Kachi_shell$$$$$: ");
+    kachi_print("Kachi_shell$: ");
 }
