@@ -1,26 +1,26 @@
-#include "main.h"
+#include "shell.h"
 
 
 /***** RETURNS A POINTER TO A NEW STRING ******/
 /**
- * _strdup - returns pointer to new mem alloc space which contains copy
- * @strtodup: string to be duplicated
+ * str_dup - returns pointer to new mem alloc space which contains copy
+ * @str_t_dup: string to be duplicated
  * Return: a pointer to the new duplicated string
  */
-char *_strdup(char *strtodup)
+char *str_dup(char *str_t_dup)
 {
 	char *copy;
 
 		int len, i;
 
-	if (strtodup == 0)
+	if (str_t_dup == 0)
 		return (0);
 
-	for (len = 0; strtodup[len]; len++);
+	for (len = 0; str_t_dup[len]; len++);
 	copy = malloc((len + 1) * sizeof(char));
 
 	for (i = 0; i <= len; i++)
-		copy[i] = strtodup[i];
+		copy[i] = str_t_dup[i];
 
 return (copy);
 }
@@ -28,52 +28,52 @@ return (copy);
 
 /****** COMPARES TWO STRINGS *****/
 /**
- * _strcmpr - compares two strings
- * @strcmp1: first string, of two, to be compared in length
- * @strcmp2: second string, of two, to be compared
+ * str_comp - compares two strings
+ * @str_t_comp: first string, of two, to be compared in length
+ * @str_t_comp_2: second string, of two, to be compared
  * Return: 0 on success, anything else is a failure
  */
-int _strcmpr(char *strcmp1, char *strcmp2)
+int str_comp(char *str_t_comp, char *str_t_comp_2)
 {
 	int i;
 
 	i = 0;
-	while (strcmp1[i] == strcmp2[i])
+	while (str_t_comp[i] == str_t_comp_2[i])
 	{
-		if (strcmp1[i] == '\0')
+		if (str_t_comp[i] == '\0')
 			return (0);
 		i++;
 	}
-	return (strcmp1[i] - strcmp2[i]);
+	return (str_t_comp[i] - str_t_comp_2[i]);
 }
 
 
 /***** CONCATENATES TWO STRINGS *****/
 /**
- * _strcat - concatenates two strings
- * @strc1: first string
- * @strc2: second string
+ * str_cat - concatenates two strings
+ * @str_t_cat1: first string
+ * @str_t_cat2: second string
  * Return: pointer
  */
-char *_strcat(char *strc1, char *strc2)
+char *str_cat(char *str_t_cat1, char *str_t_cat2)
 {
 	char *newstring;
 	unsigned int len1, len2, newlen, i, j;
 
 	len1 = 0;
 	len2 = 0;
-	if (strc1 == NULL)
+	if (str_t_cat1 == NULL)
 		len1 = 0;
 	else
 	{
-		for (len1 = 0; strc1[len1]; len1++)
+		for (len1 = 0; str_t_cat1[len1]; len1++)
 			;
 	}
-	if (strc2 == NULL)
+	if (str_t_cat2 == NULL)
 		len2 = 0;
 	else
 	{
-		for (len2 = 0; strc2[len2]; len2++)
+		for (len2 = 0; str_t_cat2[len2]; len2++)
 			;
 	}
 	newlen = len1 + len2 + 1;
@@ -81,9 +81,9 @@ char *_strcat(char *strc1, char *strc2)
 	if (newstring == NULL)
 		return (NULL);
 	for (i = 0; i < len1; i++)
-		newstring[i] = strc1[i];
+		newstring[i] = str_t_cat1[i];
 	for (j = 0; j < len2; j++)
-		newstring[i + j] = strc2[j];
+		newstring[i + j] = str_t_cat2[j];
 	newstring[len1 + len2] = '\0';
 	return (newstring);
 }
@@ -113,11 +113,11 @@ ssize_t _puts(char *str)
 
 /*** MEASURE THE LENGHT OF A STRING ***/
 /**
- * _strlen - Calculates the lenght of a string.
+ * str_len - Calculates the lenght of a string.
  * @str: String that needs length to be found.
  * Return: Upon success returns the length of a string. otherwise 0.
  */
-int _strlen(char *str)
+int str_len(char *str)
 {
 	int i;
 

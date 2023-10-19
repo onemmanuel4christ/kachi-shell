@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
  * new_help_history - help builtin command history
  * @vars: if command matches a builtin name, text file is sent to stdout
@@ -10,7 +10,7 @@ void new_help_history(vars_t *vars)
 	int file_d, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "history") == 0)
+	if (str_comp(vars->array_tokens[1], "history") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/history";
 		file_d = open(file, O_RDWR);
@@ -48,7 +48,7 @@ void new_help_unalias(vars_t *vars)
 	int file_d, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "unalias") == 0)
+	if (str_comp(vars->array_tokens[1], "unalias") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unalias";
 		file_d = open(file, O_RDWR);
@@ -86,7 +86,7 @@ void new_help_unset(vars_t *vars)
 	int file_d, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "unset") == 0)
+	if (str_comp(vars->array_tokens[1], "unset") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unset";
 		file_d = open(file, O_RDWR);
@@ -124,7 +124,7 @@ void new_help_unsetenv(vars_t *vars)
 	int file_d, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "unsetenv") == 0)
+	if (str_comp(vars->array_tokens[1], "unsetenv") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unsetenv";
 		file_d = open(file, O_RDWR);
@@ -162,7 +162,7 @@ void new_help_setenv(vars_t *vars)
 	int file_d, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "setenv") == 0)
+	if (str_comp(vars->array_tokens[1], "setenv") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/setenv";
 		file_d = open(file, O_RDWR);

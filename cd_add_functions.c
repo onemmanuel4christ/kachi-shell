@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * print_cd_1 - Prints error when cd argument in invalid

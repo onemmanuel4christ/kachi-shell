@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
  * check_if_match - checks if a character matches any in a string
  * @c: character to check
@@ -21,7 +21,7 @@ unsigned int check_if_match(char c, const char *str)
 /**
  * new_strtok - custom strtok
  * @str: string to tokenize
- * @delim: delimiter to tokenize against
+ * @delim: delmt to tokenize against
  *
  * Return: pointer to the next token or NULL
  */
@@ -83,8 +83,8 @@ char *build_path(char *directory, char *command)
 
 	if (directory == NULL || command == NULL)
 		return (NULL);
-	dir_len = _strlen(directory) + 1;
-	command_len = _strlen(command) + 1;
+	dir_len = str_len(directory) + 1;
+	command_len = str_len(command) + 1;
 	len = dir_len + command_len;
 
 	built = malloc(sizeof(char) * len);

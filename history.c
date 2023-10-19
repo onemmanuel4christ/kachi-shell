@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * *add_nodeint - Add node in the beginning
@@ -19,7 +19,7 @@ void *add_nodeint(history_t **head, char *str)
 		free_listint(*head);
 	}
 
-	new->str = _strdup(str);
+	new->str = str_dup(str);
 	if (new->str == NULL)
 	{
 		free_listint(*head);
@@ -141,7 +141,7 @@ void print_message(char *str)
 {
 	long num, len;
 
-	num = _strlen(str);
+	num = str_len(str);
 	len = write(STDOUT_FILENO, str, num);
 	if (len != num)
 

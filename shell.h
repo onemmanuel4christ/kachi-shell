@@ -70,11 +70,11 @@ typedef struct builtins
 } builtins_t;
 
 /******Some String operations and manipulation******/
-char *_strdup(char *strtodup);
-int _strcmpr(char *strcmp1, char *strcmp2);
-char *_strcat(char *strc1, char *strc2);
+char *str_dup(char *str_t_dup);
+int str_comp(char *str_t_comp, char *str_t_comp_2);
+char *str_cat(char *str_t_cat1, char *str_t_cat2);
 ssize_t _puts(char *str);
-int _strlen(char *str);
+int str_len(char *str);
 void print_str(char *str, int new_line);
 int _write_char(char c);
 int print_number(int n);
@@ -89,15 +89,15 @@ void new_help(vars_t *vars);
 void new_cd(vars_t *vars);
 
 /** functions related to tokenizer **/
-char **tokenizer(char *buffer, char *delimiter);
+char **tokenizer(char *buffer, char *delmt);
 unsigned int check_if_match(char c, const char *str);
 char **_realloc(char **ptr, size_t *size);
 char *new_strtok(char *str, const char *delim);
 
 /** second tokenizer**/
-char **tokenize(int token_count, char *line, const char *delimiter);
-char **token_interface(char *line, const char *delimiter, int token_count);
-int count_token(char *line, const char *delimiter);
+char **tokenize(int token_tracker, char *line, const char *delmt);
+char **token_interface(char *line, const char *delmt, int token_tracker);
+int count_token(char *line, const char *delmt);
 
 /** functions related ask external shell, ask the path**/
 void check_for_path(vars_t *vars);
@@ -160,5 +160,5 @@ void print_message(char *str);
 /** handles signals**/
 
 void end_of_file(char *buffer);
-unsigned int sig_flag;
+unsigned int flag_signal;
 #endif /* SHELL_H */

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * make_enviroment - make the shell environment from the environment.
@@ -20,7 +20,7 @@ size_t i;
 		exit(1);
 	}
 	for (i = 0; env[i] != NULL; i++)
-		newenviroment[i] = _strdup(env[i]);
+		newenviroment[i] = str_dup(env[i]);
 	newenviroment[i] = NULL;
 	return (newenviroment);
 }
@@ -51,7 +51,7 @@ void chdir_to_env(vars_t *vars, char *str)
 {
 	int len, index;
 
-	len = _strlen(str);
+	len = str_len(str);
 	index = find_env_index(*vars, str);
 	chdir((vars->env[index]) + len + 1);
 }

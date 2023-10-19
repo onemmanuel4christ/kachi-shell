@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * check_for_builtins - checks if the command is a builtin
@@ -21,7 +21,7 @@ void (*check_for_builtins(vars_t *vars))(vars_t *vars)
 
 	for (i = 0; check[i].f != NULL; i++)
 	{
-		if (_strcmpr(vars->array_tokens[0], check[i].name) == 0)
+		if (str_comp(vars->array_tokens[0], check[i].name) == 0)
 			break;
 	}
 	if (check[i].f != NULL)
@@ -39,7 +39,7 @@ void new_exit(vars_t *vars)
 
 	int status;
 	/**Si exit tiene argumentos, lo manejamos*/
-	if (_strcmpr(vars->array_tokens[0], "exit") ==
+	if (str_comp(vars->array_tokens[0], "exit") ==
 			0 &&
 		vars->array_tokens[1] != NULL)
 

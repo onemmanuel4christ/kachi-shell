@@ -1,15 +1,15 @@
-#include "main.h"
+#include "shell.h"
 
 /**
- * sig_handler - handles the signal interupt
+ * handle_signal_fuc - handles the signal interupt
  * @unused: unused variable list
  *
  * Return: void
  */
-static void sig_handler(int unused)
+static void handle_signal_fuc(int unused)
 {
 	(void)unused;
-	if (sig_flag == 0)
+	if (flag_signal == 0)
 		_puts("\n$ ");
 	else
 		_puts("\n");
@@ -33,13 +33,13 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 	vars.argv = argv;
 	vars.env = make_enviroment(environment);
 
-	signal(SIGINT, sig_handler);
+	signal(SIGINT, handle_signal_fuc);
 
 	if (!isatty(STDIN_FILENO))
 		is_pipe = 1;
 	if (is_pipe == 0)
 		_puts("$ ");
-	sig_flag = 0;
+	flag_signal = 0;
 
 	while (getline(&(vars.buffer), &len_buffer, stdin) != -1)
 	{

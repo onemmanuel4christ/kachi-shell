@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * fork_child - Creates a child in  order to execute another program.
@@ -95,7 +95,7 @@ int find_env_index(vars_t vars, char *str)
 {
 	int i, len, j;
 
-	len = _strlen(str);
+	len = str_len(str);
 	for (i = 0; vars.env[i] != NULL; i++)
 	{
 		for (j = 0; j < len; j++)
@@ -121,14 +121,14 @@ int find_env_index(vars_t vars, char *str)
 char **tokenize_path(vars_t vars, int index, char *str)
 {
 	char *env_var;
-	int token_count = 0, len;
+	int token_tracker = 0, len;
 	char **path_tokens;
 	const char *delim = ":\n";
 
-	len = _strlen(str);
+	len = str_len(str);
 
 	env_var = vars.env[index] + (len + 1);
-	path_tokens = token_interface(env_var, delim, token_count);
+	path_tokens = token_interface(env_var, delim, token_tracker);
 	if (path_tokens == NULL)
 		return (NULL);
 
