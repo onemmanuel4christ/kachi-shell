@@ -2,31 +2,31 @@
  #include <linux/limits.h>
 
 /**
- * tokenizer - tokenizes a buffer with a delmt
+ * tokenize_func - tokenizes a buffer with a delmt
  * @buffer: buffer to tokenize
  * @delmt: delmt to tokenize along
  *
  * Return: pointer to an array of pointers to the tokens
  */
-char **tokenizer(char *buffer, char *delmt)
+char **tokenize_func(char *buffer, char *delmt)
 {
 	char **tokens = NULL;
-	size_t i = 0, mcount = 10;
+	size_t i = 0, malloc_tracker = 10;
 
 	if (buffer == NULL)
 		return (NULL);
-	tokens = malloc(sizeof(char *) * mcount);
+	tokens = malloc(sizeof(char *) * malloc_tracker);
 	if (tokens == NULL)
 	{
 		perror("Fatal Error");
 		return (NULL);
 	}
-	while ((tokens[i] = new_strtok(buffer, delmt)) != NULL)
+	while ((tokens[i] = t_tok(buffer, delmt)) != NULL)
 	{
 		i++;
-		if (i == mcount)
+		if (i == malloc_tracker)
 		{
-			tokens = _realloc(tokens, &mcount);
+			tokens = _realloc(tokens, &malloc_tracker);
 			if (tokens == NULL)
 			{
 				perror("Fatal Error");
@@ -50,35 +50,35 @@ char **tokenize(int token_tracker, char *line, const char *delmt)
 	int i;
 	char **buffer;
 	char *token;
-	char *line_cp;
+	char *copy;
 
-	line_cp = str_dup(line);
+	copy = str_dup(line);
 	buffer = malloc(sizeof(char *) * (token_tracker + 1));
 	if (buffer == NULL)
 		return (NULL);
-	token = new_strtok(line_cp, delmt);
+	token = t_tok(copy, delmt);
 	for (i = 0; token != NULL; i++)
 	{
 		buffer[i] = str_dup(token);
-		token = new_strtok(NULL, delmt);
+		token = t_tok(NULL, delmt);
 	}
 	buffer[i] = NULL;
-	free(line_cp);
+	free(copy);
 	return (buffer);
 }
 
 /**
- * token_interface - token interface
+ * token_stru_func - token interface
  * @line: line get to be tokenized
  * @delmt: eny delmt lie ; % " ", etc.
  * @token_tracker: token counter.
  * Return: tokens
  **/
-char **token_interface(char *line, const char *delmt, int token_tracker)
+char **token_stru_func(char *line, const char *delmt, int token_tracker)
 {
 	vars_t vars;
 
-	token_tracker = count_token(line, delmt);
+	token_tracker = counter(line, delmt);
 	if (token_tracker == -1)
 	{
 		free(line);
@@ -95,12 +95,12 @@ char **token_interface(char *line, const char *delmt, int token_tracker)
 }
 
 /**
- * count_token - token's count
+ * counter - token's count
  * @line: string.
  * @delmt: delmt
  * Return: token's count
  **/
-int count_token(char *line, const char *delmt)
+int counter(char *line, const char *delmt)
 {
 	char *str;
 	char *token;
@@ -109,9 +109,9 @@ int count_token(char *line, const char *delmt)
 	str = str_dup(line);
 	if (str == NULL)
 		return (-1);
-	token = new_strtok(str, delmt);
+	token = t_tok(str, delmt);
 	for (i = 0; token != NULL; i++)
-		token = new_strtok(NULL, delmt);
+		token = t_tok(NULL, delmt);
 	free(str);
 	return (i);
 }

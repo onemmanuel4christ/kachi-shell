@@ -52,6 +52,6 @@ void chdir_to_env(vars_t *vars, char *str)
 	int len, index;
 
 	len = str_len(str);
-	index = find_env_index(*vars, str);
+	index = envi_idx(*vars, str);
 	chdir((vars->env[index]) + len + 1);
 }
