@@ -10,7 +10,7 @@ void new_cd(vars_t *vars)
 
 	if (vars->array_tokens[1] == NULL)
 	{
-		index = find_env_index(*vars, "HOME");
+		index = envi_idx(*vars, "HOME");
 		chdir((vars->env[index]) + 5);
 	}
 	else if (str_comp(vars->array_tokens[1], "-") == 0)

@@ -88,16 +88,16 @@ void new_unsetenv(vars_t *vars);
 void new_help(vars_t *vars);
 void new_cd(vars_t *vars);
 
-/** functions related to tokenizer **/
-char **tokenizer(char *buffer, char *delmt);
+/** functions related to tokenize_func **/
+char **tokenize_func(char *buffer, char *delmt);
 unsigned int check_if_match(char c, const char *str);
 char **_realloc(char **ptr, size_t *size);
 char *new_strtok(char *str, const char *delim);
 
-/** second tokenizer**/
+/** second tokenize_func**/
 char **tokenize(int token_tracker, char *line, const char *delmt);
-char **token_interface(char *line, const char *delmt, int token_tracker);
-int count_token(char *line, const char *delmt);
+char **token_stru_func(char *line, const char *delmt, int token_tracker);
+int counter(char *line, const char *delmt);
 
 /** functions related ask external shell, ask the path**/
 void check_for_path(vars_t *vars);
@@ -137,12 +137,12 @@ void setenv_cd(char **args, vars_t *vars);
 void chdir_to_env(vars_t *vars, char *str);
 
 /** ask the path **/
-void fork_child(vars_t vars);
-char *path_finder(vars_t vars, char *command);
-int find_env_index(vars_t vars, char *str);
-char **tokenize_path(vars_t vars, int index, char *str);
-char *search_directories(char **path_tokens, char *command);
-char *build_path(char *directory, char *command);
+void child_fork(vars_t vars);
+char *path_finder_func(vars_t vars, char *command);
+int envi_idx(vars_t vars, char *str);
+char **tokenized(vars_t vars, int index, char *str);
+char *search_dir_func(char **path, char *command);
+char *build_path_func(char *directory, char *command);
 
 /** More handle error messages**/
 void error_printing(char *av, int count, char *command);
