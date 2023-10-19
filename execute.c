@@ -8,7 +8,7 @@ void execute_description(const char *description) {
         exit(EXIT_FAILURE);
     } else if (child_pid == 0) {
 
-        char *args[128];vg
+        char *args[128];
         int arg_count = 0;
 
         char *token = strtok((char *)description, " ");
