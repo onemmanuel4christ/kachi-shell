@@ -8,7 +8,7 @@ void child_fork(vars_t vars)
 {
 	pid_t id;
 	int status, check;
-	struct stat buffer;
+	struct stat buff;
 	char *tmp_command, *command;
 
 	id = fork();
@@ -21,7 +21,7 @@ void child_fork(vars_t vars)
 		if (command == NULL)
 		{
 			/* Looking for file in current directory */
-			check = stat(tmp_command, &buffer);
+			check = stat(tmp_command, &buff);
 			if (check == -1)
 			{
 				error_printing(vars.argv[0], vars.counter, tmp_command);
@@ -148,13 +148,13 @@ char **tokenized(vars_t vars, int index, char *str)
 char *search_dir_func(char **path, char *command)
 {
 	int i, s;
-	char *c, *buffer;
+	char *c, *buff;
 	size_t size;
-	struct stat stat_buffer;
+	struct stat stat_buff;
 
-	buffer = NULL;
+	buff = NULL;
 	size = 0;
-	c = getc(buffer, size);
+	c = getc(buff, size);
 	if (c == NULL)
 		return (NULL);
 	if (command[0] == '/')
@@ -167,7 +167,7 @@ char *search_dir_func(char **path, char *command)
 			perror("ERROR!");
 			return (NULL);
 		}
-		s = stat(command, &stat_buffer);
+		s = stat(command, &stat_buff);
 		if (s == 0)
 		{
 			chdir(c);
