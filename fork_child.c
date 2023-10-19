@@ -25,7 +25,7 @@ void child_fork(vars_t vars)
 			if (check == -1)
 			{
 				error_printing(vars.argv[0], vars.counter, tmp_command);
-				print_str(": not found", 0);
+				k_print(": not found", 0);
 
 				exit(100);
 			}

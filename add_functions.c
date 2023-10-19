@@ -28,11 +28,11 @@ int _strcmp(char *s1, char *s2)
  */
 void error_printing(char *av, int count, char *command)
 {
-	print_str(av, 1);
-	print_str(": ", 1);
+	k_print(av, 1);
+	k_print(": ", 1);
 	print_number(count);
-	print_str(": ", 1);
-	print_str(command, 1);
+	k_print(": ", 1);
+	k_print(command, 1);
 }
 
 /**
@@ -45,7 +45,7 @@ void error_printing(char *av, int count, char *command)
 void exec_error(char *av, int count, char *tmp_command)
 {
 	error_printing(av, count, tmp_command);
-	print_str(": ", 1);
+	k_print(": ", 1);
 	perror("");
 	exit(1);
 }

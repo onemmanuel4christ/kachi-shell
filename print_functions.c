@@ -2,12 +2,12 @@
 
 /*** PRINT WITOUTH USING PRINF AND ADDING NEWLINE AS NEEDED ***/
 /**
- * print_str - Prints a string character by character.
+ * k_print - Prints a string character by character.
  * @str: String to be printed. If the string is NULL it will print (null)
  * @new_line: If integer is 0 a new line will be printed. Otherwise a new line
  * will not be printed.
  */
-void print_str(char *str, int new_line)
+void k_print(char *str, int new_line)
 {
 	int i;
 
@@ -21,11 +21,11 @@ void print_str(char *str, int new_line)
 
 /*** PRINT A SINGLE LETTER ***/
 /**
- * _write_char - Writes a character to stdout
+ * write_char - Writes a character to stdout
  * @c: Character that will be written to stdout
  * Return: Upon success how many characters were written.
  */
-int _write_char(char c)
+int write_char(char c)
 {
 	return (write(1, &c, 1));
 }
@@ -52,7 +52,7 @@ int print_number(int n)
 
 	for (; div != 0; )
 	{
-		len += _write_char('0' + num / div);
+		len += write_char('0' + num / div);
 		num %= div;
 		div /= 10;
 	}

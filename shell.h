@@ -75,8 +75,8 @@ int str_comp(char *str_t_comp, char *str_t_comp_2);
 char *str_cat(char *str_t_cat1, char *str_t_cat2);
 ssize_t _puts(char *str);
 int str_len(char *str);
-void print_str(char *str, int new_line);
-int _write_char(char c);
+void k_print(char *str, int new_line);
+int write_char(char c);
 int print_number(int n);
 
 /*** BUILTINGS PROTOTYPES ****/
