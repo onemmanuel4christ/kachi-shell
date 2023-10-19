@@ -1,7 +1,7 @@
 {
   "files.associations": {
     "types.h": "c",
-    "kachi-shell.h": "c",
-    "cstdlib": "c"
+    "main.h": "c",
+    "limits.h": "c"
   }
 }
