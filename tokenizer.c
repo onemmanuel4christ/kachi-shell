@@ -21,7 +21,7 @@ char **tokenize_func(char *buffer, char *delmt)
 		perror("Fatal Error");
 		return (NULL);
 	}
-	while ((tokens[i] = new_strtok(buffer, delmt)) != NULL)
+	while ((tokens[i] = t_tok(buffer, delmt)) != NULL)
 	{
 		i++;
 		if (i == malloc_tracker)
@@ -56,11 +56,11 @@ char **tokenize(int token_tracker, char *line, const char *delmt)
 	buffer = malloc(sizeof(char *) * (token_tracker + 1));
 	if (buffer == NULL)
 		return (NULL);
-	token = new_strtok(copy, delmt);
+	token = t_tok(copy, delmt);
 	for (i = 0; token != NULL; i++)
 	{
 		buffer[i] = str_dup(token);
-		token = new_strtok(NULL, delmt);
+		token = t_tok(NULL, delmt);
 	}
 	buffer[i] = NULL;
 	free(copy);
@@ -109,9 +109,9 @@ int counter(char *line, const char *delmt)
 	str = str_dup(line);
 	if (str == NULL)
 		return (-1);
-	token = new_strtok(str, delmt);
+	token = t_tok(str, delmt);
 	for (i = 0; token != NULL; i++)
-		token = new_strtok(NULL, delmt);
+		token = t_tok(NULL, delmt);
 	free(str);
 	return (i);
 }

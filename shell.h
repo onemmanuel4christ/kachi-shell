@@ -90,9 +90,9 @@ void new_cd(vars_t *vars);
 
 /** functions related to tokenize_func **/
 char **tokenize_func(char *buffer, char *delmt);
-unsigned int check_if_match(char c, const char *str);
+unsigned int match_func(char c, const char *str);
 char **_realloc(char **ptr, size_t *size);
-char *new_strtok(char *str, const char *delim);
+char *t_tok(char *str, const char *delim);
 
 /** second tokenize_func**/
 char **tokenize(int token_tracker, char *line, const char *delmt);
