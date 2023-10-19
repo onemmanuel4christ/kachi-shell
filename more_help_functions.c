@@ -7,13 +7,13 @@
 void new_help_history(vars_t *vars)
 {
 	char *file;
-	int fd, r;
+	int file_d, r;
 	char *s;
 
 	if (_strcmpr(vars->array_tokens[1], "history") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/history";
-		fd = open(file, O_RDWR);
+		file_d = open(file, O_RDWR);
 
 		s = malloc(300);
 		if (s == NULL)
@@ -21,7 +21,7 @@ void new_help_history(vars_t *vars)
 			_puts_error("Fatal Error");
 			return;
 		}
-		while ((r = read(fd, s, 300)) > 0)
+		while ((r = read(file_d, s, 300)) > 0)
 		{
 			r = write(1, s, r);
 			print_message("\n");
@@ -32,7 +32,7 @@ void new_help_history(vars_t *vars)
 			}
 		}
 		free(s);
-		fd = close(fd);
+		file_d = close(file_d);
 	}
 	else
 		new_help_unalias(vars);
@@ -45,13 +45,13 @@ void new_help_history(vars_t *vars)
 void new_help_unalias(vars_t *vars)
 {
 	char *file;
-	int fd, r;
+	int file_d, r;
 	char *s;
 
 	if (_strcmpr(vars->array_tokens[1], "unalias") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unalias";
-		fd = open(file, O_RDWR);
+		file_d = open(file, O_RDWR);
 
 		s = malloc(300);
 		if (s == NULL)
@@ -59,7 +59,7 @@ void new_help_unalias(vars_t *vars)
 			_puts_error("Fatal Error");
 			return;
 		}
-		while ((r = read(fd, s, 300)) > 0)
+		while ((r = read(file_d, s, 300)) > 0)
 		{
 			r = write(1, s, r);
 			print_message("\n");
@@ -70,7 +70,7 @@ void new_help_unalias(vars_t *vars)
 			}
 		}
 		free(s);
-		fd = close(fd);
+		file_d = close(file_d);
 	}
 	else
 		new_help_unset(vars);
@@ -83,13 +83,13 @@ void new_help_unalias(vars_t *vars)
 void new_help_unset(vars_t *vars)
 {
 	char *file;
-	int fd, r;
+	int file_d, r;
 	char *s;
 
 	if (_strcmpr(vars->array_tokens[1], "unset") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unset";
-		fd = open(file, O_RDWR);
+		file_d = open(file, O_RDWR);
 
 		s = malloc(300);
 		if (s == NULL)
@@ -97,7 +97,7 @@ void new_help_unset(vars_t *vars)
 			_puts_error("Fatal Error");
 			return;
 		}
-		while ((r = read(fd, s, 300)) > 0)
+		while ((r = read(file_d, s, 300)) > 0)
 		{
 			r = write(1, s, r);
 			print_message("\n");
@@ -108,7 +108,7 @@ void new_help_unset(vars_t *vars)
 			}
 		}
 		free(s);
-		fd = close(fd);
+		file_d = close(file_d);
 	}
 	else
 		new_help_unsetenv(vars);
@@ -121,13 +121,13 @@ void new_help_unset(vars_t *vars)
 void new_help_unsetenv(vars_t *vars)
 {
 	char *file;
-	int fd, r;
+	int file_d, r;
 	char *s;
 
 	if (_strcmpr(vars->array_tokens[1], "unsetenv") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unsetenv";
-		fd = open(file, O_RDWR);
+		file_d = open(file, O_RDWR);
 
 		s = malloc(300);
 		if (s == NULL)
@@ -135,7 +135,7 @@ void new_help_unsetenv(vars_t *vars)
 			_puts_error("Fatal Error");
 			return;
 		}
-		while ((r = read(fd, s, 300)) > 0)
+		while ((r = read(file_d, s, 300)) > 0)
 		{
 			r = write(1, s, r);
 			print_message("\n");
@@ -146,7 +146,7 @@ void new_help_unsetenv(vars_t *vars)
 			}
 		}
 		free(s);
-		fd = close(fd);
+		file_d = close(file_d);
 	}
 	else
 		new_help_setenv(vars);
@@ -159,13 +159,13 @@ void new_help_unsetenv(vars_t *vars)
 void new_help_setenv(vars_t *vars)
 {
 	char *file;
-	int fd, r;
+	int file_d, r;
 	char *s;
 
 	if (_strcmpr(vars->array_tokens[1], "setenv") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/setenv";
-		fd = open(file, O_RDWR);
+		file_d = open(file, O_RDWR);
 
 		s = malloc(300);
 		if (s == NULL)
@@ -173,7 +173,7 @@ void new_help_setenv(vars_t *vars)
 			_puts_error("Fatal Error");
 			return;
 		}
-		while ((r = read(fd, s, 300)) > 0)
+		while ((r = read(file_d, s, 300)) > 0)
 		{
 			r = write(1, s, r);
 			print_message("\n");
@@ -184,7 +184,7 @@ void new_help_setenv(vars_t *vars)
 			}
 		}
 		free(s);
-		fd = close(fd);
+		file_d = close(file_d);
 	}
 	else
 		new_help_alias(vars);

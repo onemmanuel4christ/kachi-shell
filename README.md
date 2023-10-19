@@ -1,1 +1,1 @@
-alx simple shell
+this is a solution to alx simple shell task

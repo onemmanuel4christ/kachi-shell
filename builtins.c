@@ -21,7 +21,6 @@ void (*check_for_builtins(vars_t *vars))(vars_t *vars)
 
 	for (i = 0; check[i].f != NULL; i++)
 	{
-		/** vars->array_tokens esta accediendo a los argumentos para el match */
 		if (_strcmpr(vars->array_tokens[0], check[i].name) == 0)
 			break;
 	}

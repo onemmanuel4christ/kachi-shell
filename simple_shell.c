@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * sig_handler - handles ^C signal interupt
- * @unused: unused variable (required for signal function prototype)
+ * sig_handler - handles the signal interupt
+ * @unused: unused variable list
  *
  * Return: void
  */
@@ -16,7 +16,7 @@ static void sig_handler(int unused)
 }
 /**
  * main - main function for the shell
- * @argc: number of arguments passed to main, unused
+ * @argc: number of arguments passed to main
  * @argv: array of arguments passed to main
  * @environment: array of environment variables
  *
