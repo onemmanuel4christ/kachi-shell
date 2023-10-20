@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "k_shell.h"
 /**
  * new_help - help builtin command
  * @vars: if command matches a builtin name, text file is sent to stdout
@@ -19,7 +19,7 @@ void new_help(vars_t *vars)
 		s = malloc(300);
 		if (s == NULL)
 		{
-			_puts_error("Fatal Error");
+			p_error("Fatal Error");
 			return;
 		}
 		while ((r = read(fd, s, 300)) > 0)
@@ -28,7 +28,7 @@ void new_help(vars_t *vars)
 			print_message("\n");
 			if (r == -1)
 			{
-				_puts_error("Fatal Error");
+				p_error("Fatal Error");
 				return;
 			}
 		}
@@ -51,7 +51,7 @@ void new_help_help(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (str_comp(vars->array_tokens[1], "help") == 0)
+	if (str_compr(vars->array_tokens[1], "help") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/help_help";
 		fd = open(file, O_RDWR);
@@ -59,7 +59,7 @@ void new_help_help(vars_t *vars)
 		s = malloc(300);
 		if (s == NULL)
 		{
-			_puts_error("Fatal Error");
+			p_error("Fatal Error");
 			return;
 		}
 		while ((r = read(fd, s, 300)) > 0)
@@ -68,7 +68,7 @@ void new_help_help(vars_t *vars)
 			print_message("\n");
 			if (r == -1)
 			{
-				_puts_error("Fatal Error");
+				p_error("Fatal Error");
 				return;
 			}
 		}
@@ -90,7 +90,7 @@ void new_help_exit(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (str_comp(vars->array_tokens[1], "exit") == 0)
+	if (str_compr(vars->array_tokens[1], "exit") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/exit";
 		fd = open(file, O_RDWR);
@@ -98,7 +98,7 @@ void new_help_exit(vars_t *vars)
 		s = malloc(300);
 		if (s == NULL)
 		{
-			_puts_error("Fatal Error");
+			p_error("Fatal Error");
 			return;
 		}
 		while ((r = read(fd, s, 300)) > 0)
@@ -107,7 +107,7 @@ void new_help_exit(vars_t *vars)
 			print_message("\n");
 			if (r == -1)
 			{
-				_puts_error("Fatal Error");
+				p_error("Fatal Error");
 				return;
 			}
 		}
@@ -129,7 +129,7 @@ void new_help_cd(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (str_comp(vars->array_tokens[1], "cd") == 0)
+	if (str_compr(vars->array_tokens[1], "cd") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/cd";
 		fd = open(file, O_RDWR);
@@ -137,7 +137,7 @@ void new_help_cd(vars_t *vars)
 		s = malloc(300);
 		if (s == NULL)
 		{
-			_puts_error("Fatal Error");
+			p_error("Fatal Error");
 			return;
 		}
 		while ((r = read(fd, s, 300)) > 0)
@@ -146,7 +146,7 @@ void new_help_cd(vars_t *vars)
 			print_message("\n");
 			if (r == -1)
 			{
-				_puts_error("Fatal Error");
+				p_error("Fatal Error");
 				return;
 			}
 		}
@@ -168,7 +168,7 @@ void new_help_env(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (str_comp(vars->array_tokens[1], "env") == 0)
+	if (str_compr(vars->array_tokens[1], "env") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/env";
 		fd = open(file, O_RDWR);
@@ -176,7 +176,7 @@ void new_help_env(vars_t *vars)
 		s = malloc(300);
 		if (s == NULL)
 		{
-			_puts_error("Fatal Error");
+			p_error("Fatal Error");
 			return;
 		}
 		while ((r = read(fd, s, 300)) > 0)
@@ -185,7 +185,7 @@ void new_help_env(vars_t *vars)
 			print_message("\n");
 			if (r == -1)
 			{
-				_puts_error("Fatal Error");
+				p_error("Fatal Error");
 				return;
 			}
 		}
@@ -193,5 +193,5 @@ void new_help_env(vars_t *vars)
 		fd = close(fd);
 	}
 	else
-		new_help_history(vars);
+		helper2(vars);
 }

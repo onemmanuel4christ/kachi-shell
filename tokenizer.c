@@ -1,35 +1,34 @@
-#include "shell.h"
- #include <linux/limits.h>
+#include "k_shell.h"
 
 /**
- * tokenize_func - tokenizes a buffer with a delmt
+ * tokenizer - tokenizes a buffer with a delimiter
  * @buffer: buffer to tokenize
- * @delmt: delmt to tokenize along
+ * @delimiter: delimiter to tokenize along
  *
  * Return: pointer to an array of pointers to the tokens
  */
-char **tokenize_func(char *buffer, char *delmt)
+char **tokenizer(char *buffer, char *delimiter)
 {
 	char **tokens = NULL;
-	size_t i = 0, malloc_tracker = 10;
+	size_t i = 0, mcount = 10;
 
 	if (buffer == NULL)
 		return (NULL);
-	tokens = malloc(sizeof(char *) * malloc_tracker);
+	tokens = malloc(sizeof(char *) * mcount);
 	if (tokens == NULL)
 	{
-		perror("Fatal Error");
+		err_print_func("Fatal Error");
 		return (NULL);
 	}
-	while ((tokens[i] = t_tok(buffer, delmt)) != NULL)
+	while ((tokens[i] = new_strtok(buffer, delimiter)) != NULL)
 	{
 		i++;
-		if (i == malloc_tracker)
+		if (i == mcount)
 		{
-			tokens = _realloc(tokens, &malloc_tracker);
+			tokens = realloc_func(tokens, &mcount);
 			if (tokens == NULL)
 			{
-				perror("Fatal Error");
+				err_print_func("Fatal Error");
 				return (NULL);
 			}
 		}
@@ -39,52 +38,52 @@ char **tokenize_func(char *buffer, char *delmt)
 }
 
 /**
- * tokenize - tokenizes a buffer with a delmt just use for for_child
+ * tokenize - tokenizes a buffer with a delimiter just use for for_child
  * @line: buffer to tokenize
- * @delmt: delmt to tokenize along
- * @token_tracker: token count, size.
+ * @delimiter: delimiter to tokenize along
+ * @token_count: token count, size.
  * Return: pointer to an array of pointers to the tokens
  */
-char **tokenize(int token_tracker, char *line, const char *delmt)
+char **tokenize(int token_count, char *line, const char *delimiter)
 {
 	int i;
 	char **buffer;
 	char *token;
-	char *copy;
+	char *line_cp;
 
-	copy = str_dup(line);
-	buffer = malloc(sizeof(char *) * (token_tracker + 1));
+	line_cp = str_dup(line);
+	buffer = malloc(sizeof(char *) * (token_count + 1));
 	if (buffer == NULL)
 		return (NULL);
-	token = t_tok(copy, delmt);
+	token = new_strtok(line_cp, delimiter);
 	for (i = 0; token != NULL; i++)
 	{
 		buffer[i] = str_dup(token);
-		token = t_tok(NULL, delmt);
+		token = new_strtok(NULL, delimiter);
 	}
 	buffer[i] = NULL;
-	free(copy);
+	free(line_cp);
 	return (buffer);
 }
 
 /**
- * token_stru_func - token interface
+ * token_interface - token interface
  * @line: line get to be tokenized
- * @delmt: eny delmt lie ; % " ", etc.
- * @token_tracker: token counter.
+ * @delimiter: eny delimiter lie ; % " ", etc.
+ * @token_count: token counter.
  * Return: tokens
  **/
-char **token_stru_func(char *line, const char *delmt, int token_tracker)
+char **token_interface(char *line, const char *delimiter, int token_count)
 {
 	vars_t vars;
 
-	token_tracker = counter(line, delmt);
-	if (token_tracker == -1)
+	token_count = count_token(line, delimiter);
+	if (token_count == -1)
 	{
 		free(line);
 		return (NULL);
 	}
-	vars.array_tokens = tokenize(token_tracker, line, delmt);
+	vars.array_tokens = tokenize(token_count, line, delimiter);
 	if (vars.array_tokens == NULL)
 	{
 		free(line);
@@ -95,12 +94,12 @@ char **token_stru_func(char *line, const char *delmt, int token_tracker)
 }
 
 /**
- * counter - token's count
+ * count_token - token's count
  * @line: string.
- * @delmt: delmt
+ * @delimiter: delimiter
  * Return: token's count
  **/
-int counter(char *line, const char *delmt)
+int count_token(char *line, const char *delimiter)
 {
 	char *str;
 	char *token;
@@ -109,9 +108,9 @@ int counter(char *line, const char *delmt)
 	str = str_dup(line);
 	if (str == NULL)
 		return (-1);
-	token = t_tok(str, delmt);
+	token = new_strtok(str, delimiter);
 	for (i = 0; token != NULL; i++)
-		token = t_tok(NULL, delmt);
+		token = new_strtok(NULL, delimiter);
 	free(str);
 	return (i);
 }

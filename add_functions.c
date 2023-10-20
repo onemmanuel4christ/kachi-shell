@@ -1,16 +1,16 @@
-#include "shell.h"
+#include "k_shell.h"
 
 /**
- * _strcmp - compares two strings
+ * str_comp - compares two strings
  * @s1: First string
  * @s2: Second string
  * Return: 0 if strings match. -1 Otherwise.
  */
-int _strcmp(char *s1, char *s2)
+int str_comp(char *s1, char *s2)
 {
 	int i;
 
-	if (str_len(s1) != str_len(s2))
+	if (str_length(s1) != str_length(s2))
 		return (-1);
 	for (i = 0; s1[i] != '\0'; i++)
 	{
@@ -21,41 +21,41 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * error_printing - Prints a message error when a comand is not found.
+ * print_err - Prints a message error when a comand is not found.
  * @count: A counter keeping track of the number of commands run on the shell.
  * @av: The name of the program running the shell.
  * @command: The specific command not being found.
  */
-void error_printing(char *av, int count, char *command)
+void print_err(char *av, int count, char *command)
 {
-	k_print(av, 1);
-	k_print(": ", 1);
+	kachi_print(av, 1);
+	kachi_print(": ", 1);
 	print_number(count);
-	k_print(": ", 1);
-	k_print(command, 1);
+	kachi_print(": ", 1);
+	kachi_print(command, 1);
 }
 
 /**
- * exec_error - Prints exec errors.
+ * er_func - Prints exec errors.
  * @av: The name of the program running the shell.
  * @count: Keeps track of how many commands have been entered.
  * @tmp_command: The command that filed.
  */
 
-void exec_error(char *av, int count, char *tmp_command)
+void er_func(char *av, int count, char *tmp_command)
 {
-	error_printing(av, count, tmp_command);
-	k_print(": ", 1);
-	perror("");
+	print_err(av, count, tmp_command);
+	kachi_print(": ", 1);
+	err_print_func("");
 	exit(1);
 }
 
 /**
- * simple_error - Prints and exec simple error.
+ * err_message - Prints and exec simple error.
  * Return: always void.
  */
-void simple_error(void)
+void err_message(void)
 {
-	perror("Fatal Error");
+	err_print_func("Fatal Error");
 	exit(100);
 }
