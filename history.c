@@ -1,14 +1,14 @@
-#include "shell.h"
+#include "k_shell.h"
 
 /**
- * *add_nodeint - Add node in the beginning
+ * *add_func - Add node in the beginning
  * @head: The pointer of the history list.
  * @str: The string received.
  *
  * Return: On success 1
  */
 
-void *add_nodeint(history_t **head, char *str)
+void *add_func(history_t **head, char *str)
 {
 
 	history_t *new = malloc(sizeof(history_t));
@@ -98,7 +98,7 @@ void new_history(vars_t *vars)
 			count = integer_converter(counter);
 			print_message(count);
 			print_message("  ");
-			_puts3(tmp2->str);
+			my_print_func3(tmp2->str);
 			tmp2 = tmp2->next;
 			z++;
 			free(count);
@@ -112,12 +112,12 @@ void new_history(vars_t *vars)
 }
 /*** WRITES STRING TO STDOUT ***/
 /**
- * _puts3 - writes a string to standard output
+ * my_print_func3 - writes a string to standard output
  * @str: string to write
  *
  * Return: number of chars printed or -1 on failure
  */
-ssize_t _puts3(char *str)
+ssize_t my_print_func3(char *str)
 {
 	ssize_t i, len;
 
@@ -127,7 +127,7 @@ ssize_t _puts3(char *str)
 	len = write(1, str, i);
 	if (len != i)
 	{
-		perror("Fatal Error");
+		err_print_func("Fatal Error");
 		return (-1);
 	}
 	return (len);
@@ -141,12 +141,12 @@ void print_message(char *str)
 {
 	long num, len;
 
-	num = str_len(str);
+	num = str_length(str);
 	len = write(STDOUT_FILENO, str, num);
 	if (len != num)
 
 	{
-		perror("fatal error");
+		err_print_func("fatal error");
 		exit(1);
 	}
 }

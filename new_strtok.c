@@ -1,12 +1,12 @@
-#include "shell.h"
+#include "k_shell.h"
 /**
- * match_func - checks if a character matches any in a string
+ * check_if_match - checks if a character matches any in a string
  * @c: character to check
  * @str: string to check
  *
  * Return: 1 if match, 0 if not
  */
-unsigned int match_func(char c, const char *str)
+unsigned int check_if_match(char c, const char *str)
 {
 	unsigned int i;
 
@@ -19,13 +19,13 @@ unsigned int match_func(char c, const char *str)
 }
 
 /**
- * t_tok - custom strtok
+ * new_strtok - custom strtok
  * @str: string to tokenize
- * @delim: delmt to tokenize against
+ * @delim: delimiter to tokenize against
  *
  * Return: pointer to the next token or NULL
  */
-char *t_tok(char *str, const char *delim)
+char *new_strtok(char *str, const char *delim)
 {
 	static char *token_start;
 	static char *next_token;
@@ -38,7 +38,7 @@ char *t_tok(char *str, const char *delim)
 		return (NULL);
 	for (i = 0; next_token[i] != '\0'; i++)
 	{
-		if (match_func(next_token[i], delim) == 0)
+		if (check_if_match(next_token[i], delim) == 0)
 			break;
 	}
 	if (next_token[i] == '\0' || next_token[i] == '#')
@@ -50,7 +50,7 @@ char *t_tok(char *str, const char *delim)
 	next_token = token_start;
 	for (i = 0; next_token[i] != '\0'; i++)
 	{
-		if (match_func(next_token[i], delim) == 1)
+		if (check_if_match(next_token[i], delim) == 1)
 			break;
 	}
 	if (next_token[i] == '\0')
@@ -66,14 +66,14 @@ char *t_tok(char *str, const char *delim)
 }
 
 /**
- * build_path_func - Combines two strings one representing the path directory and
+ * build_path - Combines two strings one representing the path directory and
  * another representing the command file.
  * @directory: Represents a directory in the path.
  * @command: Represents a file in a directory of the path.
  * Return: Upon success a string representing the full path of a command.
  * Otherwise NULL.
  */
-char *build_path_func(char *directory, char *command)
+char *build_path(char *directory, char *command)
 {
 	int i, j;
 	int dir_len;
@@ -83,8 +83,8 @@ char *build_path_func(char *directory, char *command)
 
 	if (directory == NULL || command == NULL)
 		return (NULL);
-	dir_len = str_len(directory) + 1;
-	command_len = str_len(command) + 1;
+	dir_len = str_length(directory) + 1;
+	command_len = str_length(command) + 1;
 	len = dir_len + command_len;
 
 	built = malloc(sizeof(char) * len);
