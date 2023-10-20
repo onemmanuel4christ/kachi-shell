@@ -58,7 +58,7 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		free(vars.buffer);
 		free(vars.commands);
 		if (is_pipe == 0)
-			_puts("$ ");
+			_puts("Kachi_shell$ ");
 		vars.buffer = NULL;
 	}
 	free_env(vars.env);
