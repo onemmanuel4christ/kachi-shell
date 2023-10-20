@@ -19,7 +19,7 @@ void new_help(vars_t *vars)
 		s = malloc(300);
 		if (s == NULL)
 		{
-			_puts_error("Fatal Error");
+			_puts_error("Error Fatal");
 			return;
 		}
 		while ((r = read(fd, s, 300)) > 0)

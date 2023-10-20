@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * check_for_builtins - checks if the command is a builtin
+ * is_builtins - checks if the command is a builtin
  * @vars: variables
  * Return: pointer to the function or NULL
  */
-void (*check_for_builtins(vars_t *vars))(vars_t *vars)
+void (*is_builtins(vars_t *vars))(vars_t *vars)
 {
 	unsigned int i;
 	builtins_t check[] = {

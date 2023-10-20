@@ -20,12 +20,12 @@ char **tokenizer(char *buffer, char *delimiter)
 		perror("Fatal Error");
 		return (NULL);
 	}
-	while ((tokens[i] = new_strtok(buffer, delimiter)) != NULL)
+	while ((tokens[i] = strtok_func(buffer, delimiter)) != NULL)
 	{
 		i++;
 		if (i == mcount)
 		{
-			tokens = _realloc(tokens, &mcount);
+			tokens = realloc_func(tokens, &mcount);
 			if (tokens == NULL)
 			{
 				perror("Fatal Error");
@@ -55,11 +55,11 @@ char **tokenize(int token_count, char *line, const char *delimiter)
 	buffer = malloc(sizeof(char *) * (token_count + 1));
 	if (buffer == NULL)
 		return (NULL);
-	token = new_strtok(line_cp, delimiter);
+	token = strtok_func(line_cp, delimiter);
 	for (i = 0; token != NULL; i++)
 	{
 		buffer[i] = _strdup(token);
-		token = new_strtok(NULL, delimiter);
+		token = strtok_func(NULL, delimiter);
 	}
 	buffer[i] = NULL;
 	free(line_cp);
@@ -108,9 +108,9 @@ int count_token(char *line, const char *delimiter)
 	str = _strdup(line);
 	if (str == NULL)
 		return (-1);
-	token = new_strtok(str, delimiter);
+	token = strtok_func(str, delimiter);
 	for (i = 0; token != NULL; i++)
-		token = new_strtok(NULL, delimiter);
+		token = strtok_func(NULL, delimiter);
 	free(str);
 	return (i);
 }

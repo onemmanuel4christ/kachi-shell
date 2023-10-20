@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * make_enviroment - make the shell environment from the environment.
+ * make_env_fun - make the shell environment from the environment.
  * @env: environment passed to main
  *
  * Return: pointer to the new environment
  */
-char **make_enviroment(char **env)
+char **make_env_fun(char **env)
 {
 char **newenviroment = NULL;
 

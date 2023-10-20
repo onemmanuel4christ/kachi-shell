@@ -1,12 +1,12 @@
 #include "main.h"
 /**
- * check_if_match - checks if a character matches any in a string
+ * is_match - checks if a character matches any in a string
  * @c: character to check
  * @str: string to check
  *
  * Return: 1 if match, 0 if not
  */
-unsigned int check_if_match(char c, const char *str)
+unsigned int is_match(char c, const char *str)
 {
 	unsigned int i;
 
@@ -19,13 +19,13 @@ unsigned int check_if_match(char c, const char *str)
 }
 
 /**
- * new_strtok - custom strtok
+ * strtok_func - custom strtok
  * @str: string to tokenize
  * @delim: delimiter to tokenize against
  *
  * Return: pointer to the next token or NULL
  */
-char *new_strtok(char *str, const char *delim)
+char *strtok_func(char *str, const char *delim)
 {
 	static char *token_start;
 	static char *next_token;
@@ -38,7 +38,7 @@ char *new_strtok(char *str, const char *delim)
 		return (NULL);
 	for (i = 0; next_token[i] != '\0'; i++)
 	{
-		if (check_if_match(next_token[i], delim) == 0)
+		if (is_match(next_token[i], delim) == 0)
 			break;
 	}
 	if (next_token[i] == '\0' || next_token[i] == '#')
@@ -50,7 +50,7 @@ char *new_strtok(char *str, const char *delim)
 	next_token = token_start;
 	for (i = 0; next_token[i] != '\0'; i++)
 	{
-		if (check_if_match(next_token[i], delim) == 1)
+		if (is_match(next_token[i], delim) == 1)
 			break;
 	}
 	if (next_token[i] == '\0')

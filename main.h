@@ -78,7 +78,7 @@ int _write_char(char c);
 int print_number(int n);
 
 /*** BUILTINGS PROTOTYPES ****/
-void (*check_for_builtins(vars_t *vars))(vars_t *vars);
+void (*is_builtins(vars_t *vars))(vars_t *vars);
 void new_exit(vars_t *vars);
 void _env(vars_t *vars);
 void new_setenv(vars_t *vars);
@@ -88,9 +88,9 @@ void new_cd(vars_t *vars);
 
 /** functions related to tokenizer **/
 char **tokenizer(char *buffer, char *delimiter);
-unsigned int check_if_match(char c, const char *str);
-char **_realloc(char **ptr, size_t *size);
-char *new_strtok(char *str, const char *delim);
+unsigned int is_match(char c, const char *str);
+char **realloc_func(char **ptr, size_t *size);
+char *strtok_func(char *str, const char *delim);
 
 /** second tokenizer**/
 char **tokenize(int token_count, char *line, const char *delimiter);
@@ -110,7 +110,7 @@ int _atoi(char *str);
 
 /** functions de help env builting*/
 /*this to get enviroment*/
-char **make_enviroment(char **env);
+char **make_env_fun(char **env);
 void free_env(char **env);
 
 /**New_help functions**/

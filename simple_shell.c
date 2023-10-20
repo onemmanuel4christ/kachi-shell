@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * sig_handler - handles ^C signal interupt
+ * signal_handler_func - handles ^C signal interupt
  * @unused: unused variable (required for signal function prototype)
  *
  * Return: void
  */
-static void sig_handler(int unused)
+static void signal_handler_func(int unused)
 {
 	(void)unused;
 	if (sig_flag == 0)
@@ -31,14 +31,14 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 	vars_t vars = {NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL};
 
 	vars.argv = argv;
-	vars.env = make_enviroment(environment);
+	vars.env = make_env_fun(environment);
 
-	signal(SIGINT, sig_handler);
+	signal(SIGINT, signal_handler_func);
 
 	if (!isatty(STDIN_FILENO))
 		is_pipe = 1;
 	if (is_pipe == 0)
-		_puts("$ ");
+		_puts("Kachi_shell$ ");
 	sig_flag = 0;
 
 	while (getline(&(vars.buffer), &len_buffer, stdin) != -1)
@@ -49,7 +49,7 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		{
 			vars.array_tokens = tokenizer(vars.commands[i], " \t\r\n\a");
 			if (vars.array_tokens && vars.array_tokens[0])
-				if (check_for_builtins(&vars) == NULL)
+				if (is_builtins(&vars) == NULL)
 				{
 					fork_child(vars);
 				}
