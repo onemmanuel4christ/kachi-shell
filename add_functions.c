@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _strcmp - compares two strings
+ * _strcmp - compares two stringsi
  * @s1: First string
  * @s2: Second string
  * Return: 0 if strings match. -1 Otherwise.
