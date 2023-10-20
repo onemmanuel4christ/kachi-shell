@@ -95,7 +95,7 @@ int envi_idx(vars_t vars, char *str)
 {
 	int i, len, j;
 
-	len = _strlen(str);
+	len = strlen(str);
 	for (i = 0; vars.env[i] != NULL; i++)
 	{
 		for (j = 0; j < len; j++)
@@ -125,7 +125,7 @@ char **tokenized(vars_t vars, int index, char *str)
 	char **path;
 	const char *delim = ":\n";
 
-	len = _strlen(str);
+	len = strlen(str);
 
 	env_var = vars.env[index] + (len + 1);
 	path = token_stru_func(env_var, delim, token_count);
@@ -154,7 +154,7 @@ char *search_dir_func(char **path, char *command)
 
 	buff = NULL;
 	size = 0;
-	c = getc(buff, size);
+	c = getc(*buff, size);
 	if (c == NULL)
 		return (NULL);
 	if (command[0] == '/')
