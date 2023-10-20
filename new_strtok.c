@@ -76,16 +76,16 @@ char *strtok_func(char *str, const char *delim)
 char *build_path(char *directory, char *command)
 {
 	int i, j;
-	int dir_len;
-	int command_len;
+	int dir_length;
+	int cmd_length;
 	int len;
 	char *built;
 
 	if (directory == NULL || command == NULL)
 		return (NULL);
-	dir_len = _strlen(directory) + 1;
-	command_len = _strlen(command) + 1;
-	len = dir_len + command_len;
+	dir_length = _strlen(directory) + 1;
+	cmd_length = _strlen(command) + 1;
+	len = dir_length + cmd_length;
 
 	built = malloc(sizeof(char) * len);
 	if (built == NULL)
