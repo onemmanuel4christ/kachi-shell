@@ -1,20 +1,20 @@
-#include "k_shell.h"
+#include "main.h"
 
 /**
- * add_val_func - create a new environment variable string
+ * add_value - create a new environment variable string
  * @key: variable name
  * @value: variable value
  *
  * Return: pointer to the new string;
  */
 
-char *add_val_func(char *key, char *value)
+char *add_value(char *key, char *value)
 {
 	unsigned int len1, len2, i, j;
 	char *new;
 
-	len1 = str_length(key);
-	len2 = str_length(value);
+	len1 = _strlen(key);
+	len2 = _strlen(value);
 	new = malloc(sizeof(char) * (len1 + len2 + 2));
 	if (new == NULL)
 		return (NULL);
@@ -39,7 +39,7 @@ char **find_key(char **env, char *key)
 {
 	unsigned int i, j, len;
 
-	len = str_length(key);
+	len = _strlen(key);
 	for (i = 0; env[i] != NULL; i++)
 	{
 		for (j = 0; j < len; j++)
@@ -75,14 +75,14 @@ void add_key(vars_t *vars)
 	}
 	for (i = 0; vars->env[i] != NULL; i++)
 		newenv[i] = vars->env[i];
-	newenv[i] = add_val_func(vars->array_tokens[1], vars->array_tokens[2]);
+	newenv[i] = add_value(vars->array_tokens[1], vars->array_tokens[2]);
 	if (newenv[i] == NULL)
 	{
 		prints_error_msg(vars, NULL);
 		free(vars->buffer);
 		free(vars->commands);
 		free(vars->array_tokens);
-		free_env_func(vars->env);
+		free_env(vars->env);
 		free(newenv);
 		exit(127);
 	}

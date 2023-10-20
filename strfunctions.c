@@ -1,13 +1,13 @@
-#include "k_shell.h"
+#include "main.h"
 
 
 /***** RETURNS A POINTER TO A NEW STRING ******/
 /**
- * str_dup - returns pointer to new mem alloc space which contains copy
+ * _strdup - returns pointer to new mem alloc space which contains copy
  * @strtodup: string to be duplicated
  * Return: a pointer to the new duplicated string
  */
-char *str_dup(char *strtodup)
+char *_strdup(char *strtodup)
 {
 	char *copy;
 
@@ -29,12 +29,12 @@ return (copy);
 
 /****** COMPARES TWO STRINGS *****/
 /**
- * str_compr - compares two strings
+ * _strcmpr - compares two strings
  * @strcmp1: first string, of two, to be compared in length
  * @strcmp2: second string, of two, to be compared
  * Return: 0 on success, anything else is a failure
  */
-int str_compr(char *strcmp1, char *strcmp2)
+int _strcmpr(char *strcmp1, char *strcmp2)
 {
 	int i;
 
@@ -92,12 +92,12 @@ char *_strcat(char *strc1, char *strc2)
 
 /*** WRITES STRING TO STDOUT ***/
 /**
- * my_print_func - writes a string to standard output
+ * _puts - writes a string to standard output
  * @str: string to write
  *
  * Return: number of chars printed or -1 on failure
  */
-ssize_t my_print_func(char *str)
+ssize_t _puts(char *str)
 {
 	ssize_t i, len;
 
@@ -106,7 +106,7 @@ ssize_t my_print_func(char *str)
 	len = write(1, str, i);
 	if (len != i)
 	{
-		err_print_func("Fatal Error");
+		perror("Fatal Error");
 		return (-1);
 	}
 	return (len);
@@ -114,11 +114,11 @@ ssize_t my_print_func(char *str)
 
 /*** MEASURE THE LENGHT OF A STRING ***/
 /**
- * str_length - Calculates the lenght of a string.
+ * _strlen - Calculates the lenght of a string.
  * @str: String that needs length to be found.
  * Return: Upon success returns the length of a string. otherwise 0.
  */
-int str_length(char *str)
+int _strlen(char *str)
 {
 	int i;
 

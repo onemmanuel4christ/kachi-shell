@@ -1,4 +1,4 @@
-#include "k_shell.h"
+#include "main.h"
 
 /**
  * sig_handler - handles ^C signal interupt
@@ -10,9 +10,9 @@ static void sig_handler(int unused)
 {
 	(void)unused;
 	if (sig_flag == 0)
-		my_print_func("\n$ ");
+		_puts("\n$ ");
 	else
-		my_print_func("\n");
+		_puts("\n");
 }
 /**
  * main - main function for the shell
@@ -31,14 +31,14 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 	vars_t vars = {NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL};
 
 	vars.argv = argv;
-	vars.env = new_env(environment);
+	vars.env = make_enviroment(environment);
 
 	signal(SIGINT, sig_handler);
 
 	if (!isatty(STDIN_FILENO))
 		is_pipe = 1;
 	if (is_pipe == 0)
-		my_print_func("$ ");
+		_puts("$ ");
 	sig_flag = 0;
 
 	while (getline(&(vars.buffer), &len_buffer, stdin) != -1)
@@ -49,7 +49,7 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		{
 			vars.array_tokens = tokenizer(vars.commands[i], " \t\r\n\a");
 			if (vars.array_tokens && vars.array_tokens[0])
-				if (check_for_my_shell_func(&vars) == NULL)
+				if (check_for_builtins(&vars) == NULL)
 				{
 					fork_child(vars);
 				}
@@ -58,10 +58,10 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		free(vars.buffer);
 		free(vars.commands);
 		if (is_pipe == 0)
-			my_print_func("Kachi_shell$ ");
+			_puts("$ ");
 		vars.buffer = NULL;
 	}
-	free_env_func(vars.env);
+	free_env(vars.env);
 	free(vars.buffer);
 	exit(vars.status);
 }

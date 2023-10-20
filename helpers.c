@@ -1,116 +1,62 @@
-#include "k_shell.h"
+#include "main.h"
 
 /**
- * p_error - print a string to sdandart error
- * @str: string to print.
- * Return: void
+ * new_help_alias - help builtin command alias
+ * @vars: if command matches a builtin name, text file is sent to stdout
+ * Return: 0 if sucess
  */
+void new_help_alias(vars_t *vars)
 
-void p_error(char *str)
 {
-	long num, len;
+	char *file;
+	int fd, r;
+	char *s;
 
-	num = str_length(str);
-	len = write(STDERR_FILENO, str, num);
-	if (len != num)
-
+	if (_strcmpr(vars->array_tokens[1], "alias") == 0)
 	{
-		err_print_func("fatal error");
-		exit(100);
+		file = "/home/shell_test/shelltestenviroment/helpfiles/alias";
+		fd = open(file, O_RDWR);
+
+		s = malloc(300);
+		if (s == NULL)
+		{
+			_puts_error("Fatal Error");
+			return;
+		}
+		while ((r = read(fd, s, 300)) > 0)
+		{
+			r = write(1, s, r);
+			print_message("\n");
+			if (r == -1)
+			{
+				_puts_error("Fatal Error");
+			return;
+			}
+		}
+		free(s);
+		fd = close(fd);
 	}
-}
 
-/**** imprime mensage de error con ciertor parametros ****/
-/**
- * prints_error_msg - prints error messages to standard error
- * @vars: pointer to struct of variables
- * @msg: message to print
- *
- * Return: void
- */
-
-void prints_error_msg(vars_t *vars, char *msg)
-{
-	char *count;
-
-	p_error(vars->argv[0]);
-	p_error(": ");
-
-	/*aqui croe una funcion para convertir un entero a string*/
-	count = integer_converter(vars->counter);
-	p_error(count);
-	free(count);
-	p_error(": ");
-	p_error(vars->array_tokens[0]);
-	if (msg)
-	{
-		p_error(msg);
-	}
 	else
-		err_print_func("");
+		new_help_else(vars);
 }
-
 /**
- * integer_converter - converts an unsigned int to a string
- * @count: unsigned int to convert
- *
- * Return: pointer to the converted string
+ * new_help_else -error message if not command found
+ * @vars: if command matches a builtin name, text file is sent to stdout
+ * Return: 0 if sucess
  */
 
-char *integer_converter(unsigned int count)
+void new_help_else(vars_t *vars)
 {
-	char *numstr;
-	unsigned int tmp, digits;
 
-	tmp = count;
+	prints_error_msg(vars, ": no help topics match: `");
+	_puts_error(vars->array_tokens[1]);
 
-	for (digits = 0; tmp != 0; digits++)
-		tmp /= 10;
+	_puts_error("'.  Try `help help' or `man -k ");
+	_puts_error(vars->array_tokens[1]);
+	_puts_error("' or `info ");
+	_puts_error(vars->array_tokens[1]);
+	_puts_error("'.");
 
-	numstr = malloc(sizeof(char) * (digits + 1));
-
-	if (numstr == NULL)
-	{
-		err_print_func("Fatal Error");
-		exit(100);
-	}
-
-	numstr[digits] = '\0';
-
-	for (--digits; count; --digits)
-	{
-		numstr[digits] = (count % 10) + '0';
-		count /= 10;
-	}
-	return (numstr);
-}
-
-/**
- * _atoi - converts a string into an integer
- * @str: string to convert
- *
- * Return: the integer value, or -1 if an error occurs
- */
-int _atoi(char *str)
-{
-	unsigned int i, digits;
-	int num = 0, num_test;
-
-	num_test = INT_MAX;
-	for (digits = 0; num_test != 0; digits++)
-		num_test /= 10;
-	for (i = 0; str[i] != '\0' && i < digits; i++)
-	{
-		num *= 10;
-		if (str[i] < '0' || str[i] > '9')
-			return (-1);
-		if ((i == digits - 1) && (str[i] - '0' > INT_MAX % 10))
-			return (-1);
-		num += str[i] - '0';
-		if ((i == digits - 2) && (str[i + 1] != '\0') && (num > INT_MAX / 10))
-			return (-1);
-	}
-	if (i > digits)
-		return (-1);
-	return (num);
+	_puts_error("\n");
 }

@@ -1,13 +1,13 @@
-#include "k_shell.h"
+#include "main.h"
 
 /**
- * realloc_func - reallocates a pointer to double the space
+ * _realloc - reallocates a pointer to double the space
  * @ptr: pointer to the old array
  * @size: pointer to number of elements in the old array
  *
  * Return: pointer to the new array
  */
-char **realloc_func(char **ptr, size_t *size)
+char **_realloc(char **ptr, size_t *size)
 {
 	char **new;
 	size_t i;

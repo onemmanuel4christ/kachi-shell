@@ -1,4 +1,4 @@
-#include "k_shell.h"
+#include "main.h"
 /**
  * check_if_match - checks if a character matches any in a string
  * @c: character to check
@@ -83,8 +83,8 @@ char *build_path(char *directory, char *command)
 
 	if (directory == NULL || command == NULL)
 		return (NULL);
-	dir_len = str_length(directory) + 1;
-	command_len = str_length(command) + 1;
+	dir_len = _strlen(directory) + 1;
+	command_len = _strlen(command) + 1;
 	len = dir_len + command_len;
 
 	built = malloc(sizeof(char) * len);

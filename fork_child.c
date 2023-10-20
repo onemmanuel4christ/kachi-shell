@@ -1,4 +1,4 @@
-#include "k_shell.h"
+#include "main.h"
 
 /**
  * fork_child - Creates a child in  order to execute another program.
@@ -24,8 +24,8 @@ void fork_child(vars_t vars)
 			check = stat(tmp_command, &buf);
 			if (check == -1)
 			{
-				print_err(vars.argv[0], vars.counter, tmp_command);
-				kachi_print(": not found", 0);
+				error_printing(vars.argv[0], vars.counter, tmp_command);
+				print_str(": not found", 0);
 
 				exit(100);
 			}
@@ -36,7 +36,7 @@ void fork_child(vars_t vars)
 		if (vars.array_tokens[0] != NULL)
 		{
 			if (execve(vars.array_tokens[0], vars.array_tokens, vars.env) == -1)
-				er_func(vars.argv[0], vars.counter, tmp_command);
+				exec_error(vars.argv[0], vars.counter, tmp_command);
 		}
 	}
 }
@@ -57,7 +57,7 @@ char *path_finder(vars_t vars, char *command)
 	int index, i;
 	char *directory;
 
-	index = env_idx_fuct(vars, str);
+	index = find_env_index(vars, str);
 	path_tokens = tokenize_path(vars, index, str);
 	if (path_tokens == NULL)
 		return (NULL);
@@ -85,17 +85,17 @@ char *path_finder(vars_t vars, char *command)
 }
 
 /**
- * env_idx_fuct - Finds the index of an environmental variable.
+ * find_env_index - Finds the index of an environmental variable.
  * @vars: structure with variables will be used
  * @str: Environmental variable that needs to be found.
  * Return: Upon success returns the inde of the environmental variale
  * otherwise returns -1.
  */
-int env_idx_fuct(vars_t vars, char *str)
+int find_env_index(vars_t vars, char *str)
 {
 	int i, len, j;
 
-	len = str_length(str);
+	len = _strlen(str);
 	for (i = 0; vars.env[i] != NULL; i++)
 	{
 		for (j = 0; j < len; j++)
@@ -125,7 +125,7 @@ char **tokenize_path(vars_t vars, int index, char *str)
 	char **path_tokens;
 	const char *delim = ":\n";
 
-	len = str_length(str);
+	len = _strlen(str);
 
 	env_var = vars.env[index] + (len + 1);
 	path_tokens = token_interface(env_var, delim, token_count);
@@ -161,21 +161,21 @@ char *search_directories(char **path_tokens, char *command)
 		command = command + 1;
 	for (i = 0; path_tokens[i] != NULL; i++)
 	{
-		s = c_directory(path_tokens[i]);
+		s = chdir(path_tokens[i]);
 		if (s == -1)
 		{
-			err_print_func("ERROR!");
+			perror("ERROR!");
 			return (NULL);
 		}
 		s = stat(command, &stat_buf);
 		if (s == 0)
 		{
-			c_directory(cwd);
+			chdir(cwd);
 			free(cwd);
 			return (path_tokens[i]);
 		}
 	}
-	c_directory(cwd);
+	chdir(cwd);
 	free(cwd);
 	return (NULL);
 }

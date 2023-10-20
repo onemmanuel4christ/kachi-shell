@@ -1,16 +1,16 @@
-#include "k_shell.h"
+#include "main.h"
 /**
- * helper2 - help builtin command history
+ * new_help_history - help builtin command history
  * @vars: if command matches a builtin name, text file is sent to stdout
  * Return: 0 if sucess
  */
-void helper2(vars_t *vars)
+void new_help_history(vars_t *vars)
 {
 	char *file;
 	int fd, r;
 	char *s;
 
-	if (str_compr(vars->array_tokens[1], "history") == 0)
+	if (_strcmpr(vars->array_tokens[1], "history") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/history";
 		fd = open(file, O_RDWR);
@@ -18,7 +18,7 @@ void helper2(vars_t *vars)
 		s = malloc(300);
 		if (s == NULL)
 		{
-			p_error("Fatal Error");
+			_puts_error("Fatal Error");
 			return;
 		}
 		while ((r = read(fd, s, 300)) > 0)
@@ -27,7 +27,7 @@ void helper2(vars_t *vars)
 			print_message("\n");
 			if (r == -1)
 			{
-				p_error("Fatal Error");
+				_puts_error("Fatal Error");
 			return;
 			}
 		}
@@ -35,20 +35,20 @@ void helper2(vars_t *vars)
 		fd = close(fd);
 	}
 	else
-		more_help_func(vars);
+		new_help_unalias(vars);
 }
 /**
- * more_help_func - help builtin command unalias
+ * new_help_unalias - help builtin command unalias
  * @vars: if command matches a builtin name, text file is sent to stdout
  * Return: 0 if sucess
  */
-void more_help_func(vars_t *vars)
+void new_help_unalias(vars_t *vars)
 {
 	char *file;
 	int fd, r;
 	char *s;
 
-	if (str_compr(vars->array_tokens[1], "unalias") == 0)
+	if (_strcmpr(vars->array_tokens[1], "unalias") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unalias";
 		fd = open(file, O_RDWR);
@@ -56,7 +56,7 @@ void more_help_func(vars_t *vars)
 		s = malloc(300);
 		if (s == NULL)
 		{
-			p_error("Fatal Error");
+			_puts_error("Fatal Error");
 			return;
 		}
 		while ((r = read(fd, s, 300)) > 0)
@@ -65,7 +65,7 @@ void more_help_func(vars_t *vars)
 			print_message("\n");
 			if (r == -1)
 			{
-				p_error("Fatal Error");
+				_puts_error("Fatal Error");
 			return;
 			}
 		}
@@ -86,7 +86,7 @@ void new_help_unset(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (str_compr(vars->array_tokens[1], "unset") == 0)
+	if (_strcmpr(vars->array_tokens[1], "unset") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unset";
 		fd = open(file, O_RDWR);
@@ -94,7 +94,7 @@ void new_help_unset(vars_t *vars)
 		s = malloc(300);
 		if (s == NULL)
 		{
-			p_error("Fatal Error");
+			_puts_error("Fatal Error");
 			return;
 		}
 		while ((r = read(fd, s, 300)) > 0)
@@ -103,7 +103,7 @@ void new_help_unset(vars_t *vars)
 			print_message("\n");
 			if (r == -1)
 			{
-				p_error("Fatal Error");
+				_puts_error("Fatal Error");
 			return;
 			}
 		}
@@ -124,7 +124,7 @@ void new_help_unsetenv(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (str_compr(vars->array_tokens[1], "unsetenv") == 0)
+	if (_strcmpr(vars->array_tokens[1], "unsetenv") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unsetenv";
 		fd = open(file, O_RDWR);
@@ -132,7 +132,7 @@ void new_help_unsetenv(vars_t *vars)
 		s = malloc(300);
 		if (s == NULL)
 		{
-			p_error("Fatal Error");
+			_puts_error("Fatal Error");
 			return;
 		}
 		while ((r = read(fd, s, 300)) > 0)
@@ -141,7 +141,7 @@ void new_help_unsetenv(vars_t *vars)
 			print_message("\n");
 			if (r == -1)
 			{
-				p_error("Fatal Error");
+				_puts_error("Fatal Error");
 			return;
 			}
 		}
@@ -162,7 +162,7 @@ void new_help_setenv(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (str_compr(vars->array_tokens[1], "setenv") == 0)
+	if (_strcmpr(vars->array_tokens[1], "setenv") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/setenv";
 		fd = open(file, O_RDWR);
@@ -170,7 +170,7 @@ void new_help_setenv(vars_t *vars)
 		s = malloc(300);
 		if (s == NULL)
 		{
-			p_error("Fatal Error");
+			_puts_error("Fatal Error");
 			return;
 		}
 		while ((r = read(fd, s, 300)) > 0)
@@ -179,7 +179,7 @@ void new_help_setenv(vars_t *vars)
 			print_message("\n");
 			if (r == -1)
 			{
-				p_error("Fatal Error");
+				_puts_error("Fatal Error");
 			return;
 			}
 		}

@@ -1,19 +1,19 @@
-#include "k_shell.h"
+#include "main.h"
 
 /**
- * check_for_my_shell_func - checks if the command is a builtin
+ * check_for_builtins - checks if the command is a builtin
  * @vars: variables
  * Return: pointer to the function or NULL
  */
-void (*check_for_my_shell_func(vars_t *vars))(vars_t *vars)
+void (*check_for_builtins(vars_t *vars))(vars_t *vars)
 {
 	unsigned int i;
-	my_shell_func_t check[] = {
+	builtins_t check[] = {
 		{"exit", new_exit},
 		{"env", _env},
 		{"setenv", new_setenv},
 		{"unsetenv", new_unsetenv},
-		{"cd", n_cmd},
+		{"cd", new_cd},
 		{"help", new_help},
 
 
@@ -22,7 +22,7 @@ void (*check_for_my_shell_func(vars_t *vars))(vars_t *vars)
 	for (i = 0; check[i].f != NULL; i++)
 	{
 		/** vars->array_tokens esta accediendo a los argumentos para el match */
-		if (str_compr(vars->array_tokens[0], check[i].name) == 0)
+		if (_strcmpr(vars->array_tokens[0], check[i].name) == 0)
 			break;
 	}
 	if (check[i].f != NULL)
@@ -40,7 +40,7 @@ void new_exit(vars_t *vars)
 
 	int status;
 	/**Si exit tiene argumentos, lo manejamos*/
-	if (str_compr(vars->array_tokens[0], "exit") ==
+	if (_strcmpr(vars->array_tokens[0], "exit") ==
 			0 &&
 		vars->array_tokens[1] != NULL)
 
@@ -63,7 +63,7 @@ void new_exit(vars_t *vars)
 	free(vars->array_tokens);
 
 
-	free_env_func(vars->env);
+	free_env(vars->env);
 	free(vars->buffer);
 	exit(vars->status);
 }
@@ -79,8 +79,8 @@ void _env(vars_t *vars)
 
 	for (i = 0; vars->env[i]; i++)
 	{
-		my_print_func(vars->env[i]);
-		my_print_func("\n");
+		_puts(vars->env[i]);
+		_puts("\n");
 	}
 	vars->status = 0;
 }
@@ -110,14 +110,14 @@ void new_setenv(vars_t *vars)
 	}
 	else
 	{
-		var = add_val_func(vars->array_tokens[1], vars->array_tokens[2]);
+		var = add_value(vars->array_tokens[1], vars->array_tokens[2]);
 		if (var == NULL)
 		{
 			prints_error_msg(vars, NULL);
 			free(vars->buffer);
 			free(vars->array_tokens);
 			free(vars->commands);
-			free_env_func(vars->env);
+			free_env(vars->env);
 			exit(127);
 		}
 		free(*key);

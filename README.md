@@ -1,1 +1,1 @@
-this is a solution to alx 0x16 simple shell task
+0x16 C ALX TASK (SIMPLE SHELL)

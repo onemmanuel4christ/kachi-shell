@@ -1,17 +1,17 @@
-#include "k_shell.h"
+#include "main.h"
 
 /**
- * new_cmd - Prints error when cd argument in invalid
+ * print_cd_1 - Prints error when cd argument in invalid
  *              i.e. cd -asd22
  * @vars: vars parameter to include
  * Return: Always return void and print a messaje as shown below.
  */
-void new_cmd(vars_t *vars)
+void print_cd_1(vars_t *vars)
 {
-	kachi_print("-bash: cd: ", 1);
-	kachi_print(vars->array_tokens[1], 1);
-	kachi_print(": invalid option", 0);
-	kachi_print("cd: usage: cd [-] [--]", 0);
+	print_str("-bash: cd: ", 1);
+	print_str(vars->array_tokens[1], 1);
+	print_str(": invalid option", 0);
+	print_str("cd: usage: cd [-] [--]", 0);
 }
 
 /**
@@ -22,7 +22,7 @@ void new_cmd(vars_t *vars)
  */
 void print_cd_2(vars_t *vars)
 {
-	kachi_print("-bash: cd: ", 1);
-	kachi_print(vars->array_tokens[1], 1);
-	kachi_print(": Not a directory", 0);
+	print_str("-bash: cd: ", 1);
+	print_str(vars->array_tokens[1], 1);
+	print_str(": Not a directory", 0);
 }
