@@ -66,14 +66,14 @@ char *strtok_func(char *str, const char *delim)
 }
 
 /**
- * build_path - Combines two strings one representing the path directory and
+ * b_path - Combines two strings one representing the path directory and
  * another representing the command file.
  * @directory: Represents a directory in the path.
  * @command: Represents a file in a directory of the path.
  * Return: Upon success a string representing the full path of a command.
  * Otherwise NULL.
  */
-char *build_path(char *directory, char *command)
+char *b_path(char *directory, char *command)
 {
 	int i, j;
 	int dir_length;

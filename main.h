@@ -86,26 +86,21 @@ void new_unsetenv(vars_t *vars);
 void new_help(vars_t *vars);
 void new_cd(vars_t *vars);
 
-/** functions related to tokenizer **/
 char **tokenizer(char *buffer, char *delimiter);
 unsigned int is_match(char c, const char *str);
 char **realloc_func(char **ptr, size_t *size);
 char *strtok_func(char *str, const char *delim);
 
-/** second tokenizer**/
 char **tokenize(int token_count, char *line, const char *delimiter);
-char **token_interface(char *line, const char *delimiter, int token_count);
-int count_token(char *line, const char *delimiter);
+char **token_str(char *line, const char *delimiter, int token_count);
+int token_counter(char *line, const char *delimiter);
 
-/** functions related ask external shell, ask the path**/
 void check_for_path(vars_t *vars);
 
-/** function to handle error messages, used to help exit function*/
 void _puts_error(char *str);
 void prints_error_msg(vars_t *vars, char *msg);
-char *integer_converter(unsigned int count);
+char *conv_int_func(unsigned int count);
 
-/** function to help exit builting*/
 int _atoi(char *str);
 
 /** functions de help env builting*/
@@ -114,17 +109,17 @@ char **make_env_fun(char **env);
 void free_env(char **env);
 
 /**New_help functions**/
-void new_help_exit(vars_t *vars);
-void new_help_help(vars_t *vars);
-void new_help_cd(vars_t *vars);
-void new_help_env(vars_t *vars);
-void new_help_history(vars_t *vars);
-void new_help_unalias(vars_t *vars);
-void new_help_unset(vars_t *vars);
-void new_help_unsetenv(vars_t *vars);
-void new_help_setenv(vars_t *vars);
-void new_help_alias(vars_t *vars);
-void new_help_else(vars_t *vars);
+void n_exit(vars_t *vars);
+void my_h_func(vars_t *vars);
+void my_h_dir(vars_t *vars);
+void my_h_env(vars_t *vars);
+void n_h_history(vars_t *vars);
+void h_unalias(vars_t *vars);
+void h_unset(vars_t *vars);
+void h_unsetenv(vars_t *vars);
+void h_setenv(vars_t *vars);
+void h_alias(vars_t *vars);
+void h_ease(vars_t *vars);
 
 /** FUNCTIONS FOR SETENV AND UNSETENV**/
 void new_setenv(vars_t *vars);
@@ -135,28 +130,28 @@ void setenv_cd(char **args, vars_t *vars);
 void chdir_to_env(vars_t *vars, char *str);
 
 /** ask the path **/
-void fork_child(vars_t vars);
-char *path_finder(vars_t vars, char *command);
-int find_env_index(vars_t vars, char *str);
-char **tokenize_path(vars_t vars, int index, char *str);
-char *search_directories(char **path_tokens, char *command);
-char *build_path(char *directory, char *command);
+void fork_func(vars_t vars);
+char *sh_path(vars_t vars, char *command);
+int path_idx(vars_t vars, char *str);
+char **token_path(vars_t vars, int index, char *str);
+char *s_directories(char **path_tokens, char *command);
+char *b_path(char *directory, char *command);
 
 /** More handle error messages**/
-void error_printing(char *av, int count, char *command);
-void exec_error(char *av, int count, char *tmp_command);
-void simple_error(void);
-void print_cd_1(vars_t *vars);
-void print_cd_2(vars_t *vars);
+void print_err(char *av, int count, char *command);
+void e_error(char *av, int count, char *tmp_command);
+void sh_error(void);
+void show_dir(vars_t *vars);
+void show_dir2(vars_t *vars);
 
 /**history build function**/
-void new_history(vars_t *vars);
+void sh_history(vars_t *vars);
 void *add_nodeint(history_t **head, char *str);
-void free_listint(history_t *head);
+void free_hist_func(history_t *head);
 ssize_t _puts3(char *str);
-void print_message(char *str);
+void custom_print(char *str);
 /** handles signals**/
 
-void end_of_file(char *buffer);
+void sh_e_o_file(char *buffer);
 unsigned int sig_flag;
 #endif /* _SHELL_MAIN_ */

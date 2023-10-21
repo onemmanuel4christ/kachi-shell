@@ -16,13 +16,13 @@ void *add_nodeint(history_t **head, char *str)
 
 	if (!new)
 	{
-		free_listint(*head);
+		free_hist_func(*head);
 	}
 
 	new->str = _strdup(str);
 	if (new->str == NULL)
 	{
-		free_listint(*head);
+		free_hist_func(*head);
 	}
 
 	new->next = NULL;
@@ -41,13 +41,13 @@ void *add_nodeint(history_t **head, char *str)
 }
 
 /**
- * free_listint - free pointers related with malloc
+ * free_hist_func - free pointers related with malloc
  * @head: The pointer of the list
  *
  * Return: The number of elements in the list
  */
 
-void free_listint(history_t *head)
+void free_hist_func(history_t *head)
 {
 	history_t *delete;
 
@@ -65,12 +65,12 @@ void free_listint(history_t *head)
 }
 
 /**
- * new_history - Print the list of a single list
+ * sh_history - Print the list of a single list
  * @vars: structure with variables.
  * Return: The number of elements in the list
  */
 
-void new_history(vars_t *vars)
+void sh_history(vars_t *vars)
 {
 	history_t *tmp = vars->history;
 	history_t *tmp2 = vars->history;
@@ -81,8 +81,8 @@ void new_history(vars_t *vars)
 	if (vars->array_tokens[1] != NULL)
 	{
 		prints_error_msg(vars, ": Command not found: ");
-		print_message(vars->array_tokens[1]);
-		print_message("\n");
+		custom_print(vars->array_tokens[1]);
+		custom_print("\n");
 		return;
 	}
 	else
@@ -95,9 +95,9 @@ void new_history(vars_t *vars)
 		while (z < i)
 		{
 			counter++;
-			count = integer_converter(counter);
-			print_message(count);
-			print_message("  ");
+			count = conv_int_func(counter);
+			custom_print(count);
+			custom_print("  ");
 			_puts3(tmp2->str);
 			tmp2 = tmp2->next;
 			z++;
@@ -105,8 +105,8 @@ void new_history(vars_t *vars)
 		}
 		tmp2 = tmp2->next;
 		vars->invert = tmp2;
-		free_listint(tmp);
-		free_listint(tmp2);
+		free_hist_func(tmp);
+		free_hist_func(tmp2);
 		return;
 	}
 }
@@ -133,11 +133,11 @@ ssize_t _puts3(char *str)
 	return (len);
 }
 /**
- *print_message - print a string to standart output
+ *custom_print - print a string to standart output
  * @str: string to print.
  * Return: void
  */
-void print_message(char *str)
+void custom_print(char *str)
 {
 	long num, len;
 

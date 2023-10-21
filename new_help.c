@@ -25,7 +25,7 @@ void new_help(vars_t *vars)
 		while ((r = read(fd, s, 300)) > 0)
 		{
 			r = write(1, s, r);
-			print_message("\n");
+			custom_print("\n");
 			if (r == -1)
 			{
 				_puts_error("Fatal Error");
@@ -37,15 +37,15 @@ void new_help(vars_t *vars)
 		return;
 	}
 	else
-		new_help_help(vars);
+		my_h_func(vars);
 }
 
 /**
- * new_help_help - help builtin command help
+ * my_h_func - help builtin command help
  * @vars: if command matches a builtin name, text file is sent to stdout
  * Return: 0 if sucess
  */
-void new_help_help(vars_t *vars)
+void my_h_func(vars_t *vars)
 {
 	char *file;
 	int fd, r;
@@ -65,7 +65,7 @@ void new_help_help(vars_t *vars)
 		while ((r = read(fd, s, 300)) > 0)
 		{
 			r = write(1, s, r);
-			print_message("\n");
+			custom_print("\n");
 			if (r == -1)
 			{
 				_puts_error("Fatal Error");
@@ -76,15 +76,15 @@ void new_help_help(vars_t *vars)
 		fd = close(fd);
 	}
 	else
-		new_help_exit(vars);
+		n_exit(vars);
 }
 
 /**
- * new_help_exit - help builtin command exit
+ * n_exit - help builtin command exit
  * @vars: if command matches a builtin name, text file is sent to stdout
  * Return: 0 if sucess
  */
-void new_help_exit(vars_t *vars)
+void n_exit(vars_t *vars)
 {
 	char *file;
 	int fd, r;
@@ -104,7 +104,7 @@ void new_help_exit(vars_t *vars)
 		while ((r = read(fd, s, 300)) > 0)
 		{
 			r = write(1, s, r);
-			print_message("\n");
+			custom_print("\n");
 			if (r == -1)
 			{
 				_puts_error("Fatal Error");
@@ -116,14 +116,14 @@ void new_help_exit(vars_t *vars)
 	}
 
 	else
-		new_help_cd(vars);
+		my_h_dir(vars);
 }
 /**
- * new_help_cd - help builtin command cd
+ * my_h_dir - help builtin command cd
  * @vars: if command matches a builtin name, text file is sent to stdout
  * Return: 0 if sucess
  */
-void new_help_cd(vars_t *vars)
+void my_h_dir(vars_t *vars)
 {
 	char *file;
 	int fd, r;
@@ -143,7 +143,7 @@ void new_help_cd(vars_t *vars)
 		while ((r = read(fd, s, 300)) > 0)
 		{
 			r = write(1, s, r);
-			print_message("\n");
+			custom_print("\n");
 			if (r == -1)
 			{
 				_puts_error("Fatal Error");
@@ -155,14 +155,14 @@ void new_help_cd(vars_t *vars)
 	}
 
 	else
-		new_help_env(vars);
+		my_h_env(vars);
 }
 /**
- * new_help_env - help builtin command env
+ * my_h_env - help builtin command env
  * @vars: if command matches a builtin name, text file is sent to stdout
  * Return: 0 if sucess
  */
-void new_help_env(vars_t *vars)
+void my_h_env(vars_t *vars)
 {
 	char *file;
 	int fd, r;
@@ -182,7 +182,7 @@ void new_help_env(vars_t *vars)
 		while ((r = read(fd, s, 300)) > 0)
 		{
 			r = write(1, s, r);
-			print_message("\n");
+			custom_print("\n");
 			if (r == -1)
 			{
 				_puts_error("Fatal Error");
@@ -193,5 +193,5 @@ void new_help_env(vars_t *vars)
 		fd = close(fd);
 	}
 	else
-		new_help_history(vars);
+		n_h_history(vars);
 }

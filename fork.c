@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * fork_child - Creates a child in  order to execute another program.
+ * fork_func - Creates a child in  order to execute another program.
  * @vars: A structure cointaining a array of pointers and a string.
  */
-void fork_child(vars_t vars)
+void fork_func(vars_t vars)
 {
 	pid_t id;
 	int status, check;
@@ -17,14 +17,14 @@ void fork_child(vars_t vars)
 	else
 	{
 		tmp_command = vars.array_tokens[0];
-		command = path_finder(vars, vars.array_tokens[0]);
+		command = sh_path(vars, vars.array_tokens[0]);
 		if (command == NULL)
 		{
 			/* Looking for file in current directory */
 			check = stat(tmp_command, &buf);
 			if (check == -1)
 			{
-				error_printing(vars.argv[0], vars.counter, tmp_command);
+				print_err(vars.argv[0], vars.counter, tmp_command);
 				print_str(": not found", 0);
 
 				exit(100);
@@ -36,20 +36,20 @@ void fork_child(vars_t vars)
 		if (vars.array_tokens[0] != NULL)
 		{
 			if (execve(vars.array_tokens[0], vars.array_tokens, vars.env) == -1)
-				exec_error(vars.argv[0], vars.counter, tmp_command);
+				e_error(vars.argv[0], vars.counter, tmp_command);
 		}
 	}
 }
 
 /**
- * path_finder - Acts as an interface for functions that will be able
+ * sh_path - Acts as an interface for functions that will be able
  * to find the full path of a program.
  * @command: A common command such as ls, echo, pwd, etc..
  * Return: On success a string with the full path of the program.
  * @vars: structure with variables.
  * oterwise returns NULL.
  */
-char *path_finder(vars_t vars, char *command)
+char *sh_path(vars_t vars, char *command)
 {
 	char *str = "PATH";
 	char *constructed;
@@ -57,12 +57,12 @@ char *path_finder(vars_t vars, char *command)
 	int index, i;
 	char *directory;
 
-	index = find_env_index(vars, str);
-	path_tokens = tokenize_path(vars, index, str);
+	index = path_idx(vars, str);
+	path_tokens = token_path(vars, index, str);
 	if (path_tokens == NULL)
 		return (NULL);
 
-	directory = search_directories(path_tokens, command);
+	directory = s_directories(path_tokens, command);
 	if (directory == NULL)
 	{
 		for (i = 0; path_tokens[i] != NULL; i++)
@@ -70,7 +70,7 @@ char *path_finder(vars_t vars, char *command)
 		free(path_tokens);
 		return (NULL);
 	}
-	constructed = build_path(directory, command);
+	constructed = b_path(directory, command);
 	if (constructed == NULL)
 	{
 		for (i = 0; path_tokens[i] != NULL; i++)
@@ -85,13 +85,13 @@ char *path_finder(vars_t vars, char *command)
 }
 
 /**
- * find_env_index - Finds the index of an environmental variable.
+ * path_idx - Finds the index of an environmental variable.
  * @vars: structure with variables will be used
  * @str: Environmental variable that needs to be found.
  * Return: Upon success returns the inde of the environmental variale
  * otherwise returns -1.
  */
-int find_env_index(vars_t vars, char *str)
+int path_idx(vars_t vars, char *str)
 {
 	int i, len, j;
 
@@ -110,7 +110,7 @@ int find_env_index(vars_t vars, char *str)
 }
 
 /**
- * tokenize_path - Separates a string of path as an array of
+ * token_path - Separates a string of path as an array of
  * strings containing the path directories.
  * @vars: structure with variables will be used
  * @index: index of the path in the environment variables.
@@ -118,7 +118,7 @@ int find_env_index(vars_t vars, char *str)
  * Return: On success a NLL terminated array of string.
  * otherwise returns NULL.
  */
-char **tokenize_path(vars_t vars, int index, char *str)
+char **token_path(vars_t vars, int index, char *str)
 {
 	char *env_var;
 	int token_count = 0, len;
@@ -128,7 +128,7 @@ char **tokenize_path(vars_t vars, int index, char *str)
 	len = _strlen(str);
 
 	env_var = vars.env[index] + (len + 1);
-	path_tokens = token_interface(env_var, delim, token_count);
+	path_tokens = token_str(env_var, delim, token_count);
 	if (path_tokens == NULL)
 		return (NULL);
 
@@ -136,7 +136,7 @@ char **tokenize_path(vars_t vars, int index, char *str)
 }
 
 /**
- * search_directories - Looks through directories stored in path_tokens
+ * s_directories - Looks through directories stored in path_tokens
  * for a specific file aka command.
  * @path_tokens: A pointer to array of strings containings de paths
  * contained in the PATH environment variable.
@@ -145,7 +145,7 @@ char **tokenize_path(vars_t vars, int index, char *str)
  * Return: On success a string with the directory containing the
  * command file. Otherwise NULL.
  */
-char *search_directories(char **path_tokens, char *command)
+char *s_directories(char **path_tokens, char *command)
 {
 	int i, s;
 	char *cwd, *buf;

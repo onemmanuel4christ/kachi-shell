@@ -51,7 +51,7 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 			if (vars.array_tokens && vars.array_tokens[0])
 				if (is_builtins(&vars) == NULL)
 				{
-					fork_child(vars);
+					fork_func(vars);
 				}
 			free(vars.array_tokens);
 		}

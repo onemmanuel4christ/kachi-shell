@@ -37,7 +37,7 @@ void prints_error_msg(vars_t *vars, char *msg)
 	_puts_error(": ");
 
 	/*aqui croe una funcion para convertir un entero a string*/
-	count = integer_converter(vars->counter);
+	count = conv_int_func(vars->counter);
 	_puts_error(count);
 	free(count);
 	_puts_error(": ");
@@ -51,13 +51,13 @@ void prints_error_msg(vars_t *vars, char *msg)
 }
 
 /**
- * integer_converter - converts an unsigned int to a string
+ * conv_int_func - converts an unsigned int to a string
  * @count: unsigned int to convert
  *
  * Return: pointer to the converted string
  */
 
-char *integer_converter(unsigned int count)
+char *conv_int_func(unsigned int count)
 {
 	char *numstr;
 	unsigned int tmp, digits;

@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * new_help_alias - help builtin command alias
+ * h_alias - help builtin command alias
  * @vars: if command matches a builtin name, text file is sent to stdout
  * Return: 0 if sucess
  */
-void new_help_alias(vars_t *vars)
+void h_alias(vars_t *vars)
 
 {
 	char *file;
@@ -26,7 +26,7 @@ void new_help_alias(vars_t *vars)
 		while ((r = read(fd, s, 300)) > 0)
 		{
 			r = write(1, s, r);
-			print_message("\n");
+			custom_print("\n");
 			if (r == -1)
 			{
 				_puts_error("Fatal Error");
@@ -38,15 +38,15 @@ void new_help_alias(vars_t *vars)
 	}
 
 	else
-		new_help_else(vars);
+		h_ease(vars);
 }
 /**
- * new_help_else -error message if not command found
+ * h_ease -error message if not command found
  * @vars: if command matches a builtin name, text file is sent to stdout
  * Return: 0 if sucess
  */
 
-void new_help_else(vars_t *vars)
+void h_ease(vars_t *vars)
 {
 
 	prints_error_msg(vars, ": no help topics match: `");

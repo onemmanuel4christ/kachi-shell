@@ -53,8 +53,8 @@ void new_exit(vars_t *vars)
 			vars->status = 2;
 			/*imprimira un mensaje de error */
 			prints_error_msg(vars, ": Illegal number: ");
-			print_message(vars->array_tokens[1]);
-			print_message("\n");
+			custom_print(vars->array_tokens[1]);
+			custom_print("\n");
 			return;
 		}
 		vars->status = status;

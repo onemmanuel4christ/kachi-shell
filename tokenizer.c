@@ -67,17 +67,17 @@ char **tokenize(int token_count, char *line, const char *delimiter)
 }
 
 /**
- * token_interface - token interface
+ * token_str - token interface
  * @line: line get to be tokenized
  * @delimiter: eny delimiter lie ; % " ", etc.
  * @token_count: token counter.
  * Return: tokens
  **/
-char **token_interface(char *line, const char *delimiter, int token_count)
+char **token_str(char *line, const char *delimiter, int token_count)
 {
 	vars_t vars;
 
-	token_count = count_token(line, delimiter);
+	token_count = token_counter(line, delimiter);
 	if (token_count == -1)
 	{
 		free(line);
@@ -94,12 +94,12 @@ char **token_interface(char *line, const char *delimiter, int token_count)
 }
 
 /**
- * count_token - token's count
+ * token_counter - token's count
  * @line: string.
  * @delimiter: delimiter
  * Return: token's count
  **/
-int count_token(char *line, const char *delimiter)
+int token_counter(char *line, const char *delimiter)
 {
 	char *str;
 	char *token;
