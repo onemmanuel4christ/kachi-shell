@@ -19,7 +19,7 @@ void *add_nodeint(history_t **head, char *str)
 		free_hist_func(*head);
 	}
 
-	new->str = _strdup(str);
+	new->str = str_dup(str);
 	if (new->str == NULL)
 	{
 		free_hist_func(*head);
@@ -141,7 +141,7 @@ void custom_print(char *str)
 {
 	long num, len;
 
-	num = _strlen(str);
+	num = str_length(str);
 	len = write(STDOUT_FILENO, str, num);
 	if (len != num)
 

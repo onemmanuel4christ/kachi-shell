@@ -10,7 +10,7 @@ void _puts_error(char *str)
 {
 	long num, len;
 
-	num = _strlen(str);
+	num = str_length(str);
 	len = write(STDERR_FILENO, str, num);
 	if (len != num)
 
@@ -36,7 +36,6 @@ void prints_error_msg(vars_t *vars, char *msg)
 	_puts_error(vars->argv[0]);
 	_puts_error(": ");
 
-	/*aqui croe una funcion para convertir un entero a string*/
 	count = conv_int_func(vars->counter);
 	_puts_error(count);
 	free(count);

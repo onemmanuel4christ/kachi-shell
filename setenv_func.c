@@ -13,8 +13,8 @@ char *add_value(char *key, char *value)
 	unsigned int len1, len2, i, j;
 	char *new;
 
-	len1 = _strlen(key);
-	len2 = _strlen(value);
+	len1 = str_length(key);
+	len2 = str_length(value);
 	new = malloc(sizeof(char) * (len1 + len2 + 2));
 	if (new == NULL)
 		return (NULL);
@@ -39,7 +39,7 @@ char **find_key(char **env, char *key)
 {
 	unsigned int i, j, len;
 
-	len = _strlen(key);
+	len = str_length(key);
 	for (i = 0; env[i] != NULL; i++)
 	{
 		for (j = 0; j < len; j++)

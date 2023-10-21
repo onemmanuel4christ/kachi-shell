@@ -10,7 +10,7 @@ void n_h_history(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "history") == 0)
+	if (str_compare(vars->array_tokens[1], "history") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/history";
 		fd = open(file, O_RDWR);
@@ -48,7 +48,7 @@ void h_unalias(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "unalias") == 0)
+	if (str_compare(vars->array_tokens[1], "unalias") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unalias";
 		fd = open(file, O_RDWR);
@@ -86,7 +86,7 @@ void h_unset(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "unset") == 0)
+	if (str_compare(vars->array_tokens[1], "unset") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unset";
 		fd = open(file, O_RDWR);
@@ -124,7 +124,7 @@ void h_unsetenv(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "unsetenv") == 0)
+	if (str_compare(vars->array_tokens[1], "unsetenv") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/unsetenv";
 		fd = open(file, O_RDWR);
@@ -162,7 +162,7 @@ void h_setenv(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "setenv") == 0)
+	if (str_compare(vars->array_tokens[1], "setenv") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/setenv";
 		fd = open(file, O_RDWR);

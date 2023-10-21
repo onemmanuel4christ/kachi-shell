@@ -51,7 +51,7 @@ void my_h_func(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "help") == 0)
+	if (str_compare(vars->array_tokens[1], "help") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/help_help";
 		fd = open(file, O_RDWR);
@@ -90,7 +90,7 @@ void n_exit(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "exit") == 0)
+	if (str_compare(vars->array_tokens[1], "exit") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/exit";
 		fd = open(file, O_RDWR);
@@ -129,7 +129,7 @@ void my_h_dir(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "cd") == 0)
+	if (str_compare(vars->array_tokens[1], "cd") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/cd";
 		fd = open(file, O_RDWR);
@@ -168,7 +168,7 @@ void my_h_env(vars_t *vars)
 	int fd, r;
 	char *s;
 
-	if (_strcmpr(vars->array_tokens[1], "env") == 0)
+	if (str_compare(vars->array_tokens[1], "env") == 0)
 	{
 		file = "/home/shell_test/shelltestenviroment/helpfiles/env";
 		fd = open(file, O_RDWR);

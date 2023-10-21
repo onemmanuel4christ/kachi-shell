@@ -51,14 +51,14 @@ char **tokenize(int token_count, char *line, const char *delimiter)
 	char *token;
 	char *line_cp;
 
-	line_cp = _strdup(line);
+	line_cp = str_dup(line);
 	buffer = malloc(sizeof(char *) * (token_count + 1));
 	if (buffer == NULL)
 		return (NULL);
 	token = strtok_func(line_cp, delimiter);
 	for (i = 0; token != NULL; i++)
 	{
-		buffer[i] = _strdup(token);
+		buffer[i] = str_dup(token);
 		token = strtok_func(NULL, delimiter);
 	}
 	buffer[i] = NULL;
@@ -105,7 +105,7 @@ int token_counter(char *line, const char *delimiter)
 	char *token;
 	int i;
 
-	str = _strdup(line);
+	str = str_dup(line);
 	if (str == NULL)
 		return (-1);
 	token = strtok_func(str, delimiter);

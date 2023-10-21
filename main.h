@@ -1,5 +1,5 @@
-#ifndef _SHELL_MAIN_
-#define _SHELL_MAIN_
+#ifndef SHELL_MAIN
+#define SHELL_MAIN
 #define UNUSED(x) (void)(x)
 
 #include <stdio.h>
@@ -67,17 +67,15 @@ typedef struct builtins
 	void (*f)(vars_t *);
 } builtins_t;
 
-/******Some String operations and manipulation******/
-char *_strdup(char *strtodup);
-int _strcmpr(char *strcmp1, char *strcmp2);
-char *_strcat(char *strc1, char *strc2);
+char *str_dup(char *strtodup);
+int str_compare(char *strcmp1, char *strcmp2);
+char *str_cat(char *strc1, char *strc2);
 ssize_t _puts(char *str);
-int _strlen(char *str);
+int str_length(char *str);
 void print_str(char *str, int new_line);
 int _write_char(char c);
 int print_number(int n);
 
-/*** BUILTINGS PROTOTYPES ****/
 void (*is_builtins(vars_t *vars))(vars_t *vars);
 void new_exit(vars_t *vars);
 void _env(vars_t *vars);
@@ -103,12 +101,10 @@ char *conv_int_func(unsigned int count);
 
 int _atoi(char *str);
 
-/** functions de help env builting*/
-/*this to get enviroment*/
+
 char **make_env_fun(char **env);
 void free_env(char **env);
 
-/**New_help functions**/
 void n_exit(vars_t *vars);
 void my_h_func(vars_t *vars);
 void my_h_dir(vars_t *vars);
@@ -121,7 +117,6 @@ void h_setenv(vars_t *vars);
 void h_alias(vars_t *vars);
 void h_ease(vars_t *vars);
 
-/** FUNCTIONS FOR SETENV AND UNSETENV**/
 void new_setenv(vars_t *vars);
 void add_key(vars_t *vars);
 char *add_value(char *key, char *value);
@@ -129,7 +124,6 @@ char **find_key(char **env, char *key);
 void setenv_cd(char **args, vars_t *vars);
 void chdir_to_env(vars_t *vars, char *str);
 
-/** ask the path **/
 void fork_func(vars_t vars);
 char *sh_path(vars_t vars, char *command);
 int path_idx(vars_t vars, char *str);
@@ -137,21 +131,18 @@ char **token_path(vars_t vars, int index, char *str);
 char *s_directories(char **path_tokens, char *command);
 char *b_path(char *directory, char *command);
 
-/** More handle error messages**/
 void print_err(char *av, int count, char *command);
 void e_error(char *av, int count, char *tmp_command);
 void sh_error(void);
 void show_dir(vars_t *vars);
 void show_dir2(vars_t *vars);
 
-/**history build function**/
 void sh_history(vars_t *vars);
 void *add_nodeint(history_t **head, char *str);
 void free_hist_func(history_t *head);
 ssize_t _puts3(char *str);
 void custom_print(char *str);
-/** handles signals**/
 
 void sh_e_o_file(char *buffer);
 unsigned int sig_flag;
-#endif /* _SHELL_MAIN_ */
+#endif /* SHELL_MAIN */

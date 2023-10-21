@@ -13,7 +13,7 @@ void new_cd(vars_t *vars)
 		index = path_idx(*vars, "HOME");
 		chdir((vars->env[index]) + 5);
 	}
-	else if (_strcmpr(vars->array_tokens[1], "-") == 0)
+	else if (str_compare(vars->array_tokens[1], "-") == 0)
 		print_str(vars->array_tokens[1], 0);
 	else
 		chdir(vars->array_tokens[1]);

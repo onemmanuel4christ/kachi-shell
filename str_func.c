@@ -3,11 +3,11 @@
 
 /***** RETURNS A POINTER TO A NEW STRING ******/
 /**
- * _strdup - returns pointer to new mem alloc space which contains copy
+ * str_dup - returns pointer to new mem alloc space which contains copy
  * @strtodup: string to be duplicated
  * Return: a pointer to the new duplicated string
  */
-char *_strdup(char *strtodup)
+char *str_dup(char *strtodup)
 {
 	char *copy;
 
@@ -29,12 +29,12 @@ return (copy);
 
 /****** COMPARES TWO STRINGS *****/
 /**
- * _strcmpr - compares two strings
+ * str_compare - compares two strings
  * @strcmp1: first string, of two, to be compared in length
  * @strcmp2: second string, of two, to be compared
  * Return: 0 on success, anything else is a failure
  */
-int _strcmpr(char *strcmp1, char *strcmp2)
+int str_compare(char *strcmp1, char *strcmp2)
 {
 	int i;
 
@@ -51,12 +51,12 @@ int _strcmpr(char *strcmp1, char *strcmp2)
 
 /***** CONCATENATES TWO STRINGS *****/
 /**
- * _strcat - concatenates two strings
+ * str_cat - concatenates two strings
  * @strc1: first string
  * @strc2: second string
  * Return: pointer
  */
-char *_strcat(char *strc1, char *strc2)
+char *str_cat(char *strc1, char *strc2)
 {
 	char *newstring;
 	unsigned int len1, len2, newlen, i, j;
@@ -114,11 +114,11 @@ ssize_t _puts(char *str)
 
 /*** MEASURE THE LENGHT OF A STRING ***/
 /**
- * _strlen - Calculates the lenght of a string.
+ * str_length - Calculates the lenght of a string.
  * @str: String that needs length to be found.
  * Return: Upon success returns the length of a string. otherwise 0.
  */
-int _strlen(char *str)
+int str_length(char *str)
 {
 	int i;
 

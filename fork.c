@@ -20,7 +20,6 @@ void fork_func(vars_t vars)
 		command = sh_path(vars, vars.array_tokens[0]);
 		if (command == NULL)
 		{
-			/* Looking for file in current directory */
 			check = stat(tmp_command, &buf);
 			if (check == -1)
 			{
@@ -29,7 +28,6 @@ void fork_func(vars_t vars)
 
 				exit(100);
 			}
-			/* file exist in cwd or has full path */
 			command = tmp_command;
 		}
 		vars.array_tokens[0] = command;
@@ -95,7 +93,7 @@ int path_idx(vars_t vars, char *str)
 {
 	int i, len, j;
 
-	len = _strlen(str);
+	len = str_length(str);
 	for (i = 0; vars.env[i] != NULL; i++)
 	{
 		for (j = 0; j < len; j++)
@@ -125,7 +123,7 @@ char **token_path(vars_t vars, int index, char *str)
 	char **path_tokens;
 	const char *delim = ":\n";
 
-	len = _strlen(str);
+	len = str_length(str);
 
 	env_var = vars.env[index] + (len + 1);
 	path_tokens = token_str(env_var, delim, token_count);

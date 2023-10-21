@@ -22,7 +22,7 @@ void (*is_builtins(vars_t *vars))(vars_t *vars)
 	for (i = 0; check[i].f != NULL; i++)
 	{
 		/** vars->array_tokens esta accediendo a los argumentos para el match */
-		if (_strcmpr(vars->array_tokens[0], check[i].name) == 0)
+		if (str_compare(vars->array_tokens[0], check[i].name) == 0)
 			break;
 	}
 	if (check[i].f != NULL)
@@ -40,7 +40,7 @@ void new_exit(vars_t *vars)
 
 	int status;
 	/**Si exit tiene argumentos, lo manejamos*/
-	if (_strcmpr(vars->array_tokens[0], "exit") ==
+	if (str_compare(vars->array_tokens[0], "exit") ==
 			0 &&
 		vars->array_tokens[1] != NULL)
 
@@ -95,7 +95,6 @@ void new_setenv(vars_t *vars)
 {
 	char **key;
 	char *var;
-	/** si los argumentos de setenv son errones imprimimos mensaje de error**/
 	if (vars->array_tokens[1] == NULL || vars->array_tokens[2] == NULL)
 	{
 
